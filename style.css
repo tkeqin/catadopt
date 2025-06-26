@@ -1,0 +1,726 @@
+nav {
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+}
+
+/* Hamburger toggle (hidden on desktop) */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Brand title */
+.brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #251d17;
+  text-decoration: none;
+}
+
+/* Nav links, inline */
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #251d17;
+  padding: 8px 12px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ed9647;
+}
+
+/* Primary button style */
+.nav-links .btn-adopt {
+  background: #ed9647;
+  color: #fff;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.nav-links .btn-adopt:hover {
+  background: #d5843e;
+}
+
+/* Responsive: show hamburger, hide links */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  .nav-links {
+    display: none;
+  }
+}
+
+
+/* ==============================
+   CAT LIST & CARDS
+   ============================== */
+.cat-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.cat-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cat-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.cat-card .info {
+  flex: 1;
+  padding: 16px;
+}
+
+.cat-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  color: #251d17;
+}
+
+.cat-card p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.cat-card .actions {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid #eee;
+}
+
+.cat-card .actions a {
+  flex: 1;
+  text-align: center;
+  padding: 8px 0;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.cat-card .actions .btn-detail {
+  background: #f5f5f5;
+  color: #251d17;
+}
+
+.cat-card .actions .btn-detail:hover {
+  background: #eee;
+}
+
+.cat-card .actions .btn-adopt {
+  background: #ed9647;
+  color: #fff;
+}
+
+.cat-card .actions .btn-adopt:hover {
+  background: #d5843e;
+}
+
+
+/*login*/
+body.account-login {
+  background: #f9f9f9;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #251d17;
+}
+.account-container {
+  max-width: 380px;
+  margin: 60px auto;
+  background: #fff;
+  padding: 32px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+/* 2. Headings */
+.reset-password h2,
+.login-form h1, .register-form h1 {
+  margin: 0 0 8px;
+  font-weight: 400;
+  font-style: bold;
+}
+.reset-password p {
+  margin: 0 0 24px;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* 3. Forms */
+form {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+input {
+  margin-bottom: 20px;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* 4. Buttons & links */
+.btn {
+  background: #ed9647;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 0;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background: #d5843e;
+}
+.btn.cancel {
+  background: transparent;
+  color: #251d17;
+  border: 1px solid #ddd;
+}
+.btn.cancel:hover {
+  background: #f5f5f5;
+}
+
+/* 5. Utility links */
+.forgot-password {
+  text-align: right;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.forgot-password a,
+.create-account a, 
+.cancel a {
+  color: #251d17;
+  text-decoration: none;
+  font-weight: 500;
+
+}
+.forgot-password a:hover,
+.create-account a:hover,
+ .cancel a:hover{
+  text-decoration: underline;
+}
+.create-account {
+  text-align: center;
+  margin-top: 12px;
+}
+
+/*dashboard menu*/
+/* Bottom Nav: centered links below */
+.bottom-nav {
+  margin-top: 8px;
+  padding-bottom: 10px;
+}
+
+.centered-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.centered-links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.centered-links li a:hover {
+  color: #ed9647;
+}
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Adjust height as needed */
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This keeps the image full-size without stretching */
+}
+
+.hero-text {
+  position: absolute;
+  top: 20px; /* Distance from top */
+  left: 50%;
+  transform: translateX(-50%);
+  color: orange;
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+  margin: 0;
+}
+
+/* Floating Box */
+.adopt-box {
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  width: 80%;
+  max-width: 800px;
+  margin: -80px auto 40px auto; /* Pulls box up over image */
+  padding: 24px 32px;
+  text-align: center;
+  border-radius: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.adopt-box h2 {
+  margin: 0;
+  font-size: 32px;
+  color: #333;
+}
+
+.adopt-box p {
+  margin: 12px 0 24px;
+  color: #555;
+  font-size: 16px;
+}
+
+.adopt-btn {
+  display: inline-block;
+  background-color: rgb(236, 166, 110);
+  color: #fff;
+  padding: 12px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.adopt-btn:hover {
+  background-color: #0056b3;
+}
+
+/*adoption guideline*/
+.adoption-steps {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.adoption-steps h2 {
+  font-size: 28px;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.steps-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.step {
+  background-color: #fff;
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 280px;
+  flex: 1;
+}
+
+.step h3 {
+  margin-top: 0;
+  color: #007bff;
+}
+
+.step p {
+  color: #555;
+  font-size: 15px;
+}
+
+/*adoption fees*/
+.adoption-fees {
+  background-color: #fff;
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 20px auto;
+  text-align: center;
+
+}
+
+.adoption-fees h2 {
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.adoption-fees ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.adoption-fees li {
+  font-size: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  color: #444;
+}
+
+/*adoption faqs*/
+.adoption-faqs {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: auto;
+  border-radius: 8px;
+}
+
+.adoption-faqs h2 {
+  font-size: 28px;
+  margin-bottom: 32px;
+  text-align: center;
+  color: #333;
+}
+
+details {
+  margin-bottom: 16px;
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+summary {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(236, 166, 110);
+  cursor: pointer;
+  list-style: none;
+  padding-right: 20px;
+  position: relative;
+}
+
+/* Remove default triangle */
+summary::-webkit-details-marker {
+  display: none;
+}
+summary::marker {
+  display: none;
+}
+
+/* Plus/Minus Icon */
+summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+  color: rgb(236, 166, 110);
+}
+
+/* When open, change to minus */
+details[open] summary::after {
+  content: "−";
+}
+
+details p {
+  margin: 8px 0 0;
+  color: #555;
+  font-size: 15px;
+}
+
+
+
+/*footer*/
+.site-footer {
+  background-color: rgb(236, 166, 110);
+  color: #f0f0f0;
+  padding: 30px 20px;
+  font-size: 14px;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-left p {
+  margin: 0;
+}
+
+.footer-right {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-right a {
+  color: #f0f0f0;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-right a:hover {
+  color: #007bff;
+}
+
+/*adoptform*/
+
+.adoptform-container {
+    max-width: 1000px; 
+    margin: 60px auto;
+    background: #fff;
+    padding: 40px;  
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    align-items: flex-start;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;  
+    margin-bottom: 16px;  
+    text-align: left;
+    flex: 1;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 6px;  
+    font-size: 16px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;  
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0;
+    gap: 50px;
+}
+
+.radio-group-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;     
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #000;
+}
+
+.radio-option input[type="radio"] {
+  margin-right: 8px;
+}
+
+
+/*user profile*/
+.profile-container {
+  display: flex;
+  gap: 30px;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  align-items: flex-start;
+  font-family: sans-serif;
+}
+
+/* Left section: Avatar + name */
+.profile-left {
+  text-align: center;
+  flex: 0 0 150px;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;         /* Equal height = square */
+  border-radius: 10px;  
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: solid #0056b3;
+}
+
+/* Right section: Welcome and form */
+.profile-right {
+  flex: 1;
+}
+
+.welcome-text {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Button Styles */
+.edit-btn,
+.save-btn,
+.cancel-btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.edit-btn, .save-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+/*dash*/
+
+.user-dashboard {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  font-family: Arial, sans-serif;
+}
+
+/* Tabs */
+.profile-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px 14px;
+  background: #eee;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.tab-button:hover {
+  background: #ddd;
+}
+
+.tab-button.active-tab {
+  background: #4CAF50;
+  color: white;
+}
+
+/* Tab Content */
+.tab-content {
+  display: none;
+}
+
+.tab-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tab-content li {
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.feedback-form textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.feedback-form button {
+  background: #4CAF50;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+

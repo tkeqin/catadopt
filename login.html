@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login-FurEver</title>
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="index.html" class="brand">Simple</a>
+      <ul class="nav-links">
+        <li><a href="cats_list_guest.html">Cat List</a></li>
+        <li><a href="login.html" class="btn-adopt">Login</a></li>
+      </ul>
+      <div class="menu-toggle">☰</div>
+    </div>
+  </nav>
+
+<main>
+    <div class="account-container">
+      <!-- Reset-password prompt (shown by default on Shopify login page) -->
+        
+      <!-- Actual login form -->
+      <section class="login-form">
+        <h1 style="text-align: center;">Login</h1>
+        <form method="post" action="login.php" id="CustomerLoginForm">
+          <label for="CustomerEmail">Email</label>
+          <input type="email" name="customer[email]" id="CustomerEmail" required>
+          
+          <label for="CustomerPassword">Password</label>
+          <input type="password" name="customer[password]" id="CustomerPassword" required>
+          
+          <p class="forgot-password">
+            <a href="forgot-password.html">Forgot your password?</a>
+          </p>
+          
+          <button type="submit" class="btn">Sign in</button>
+        </form>
+        <p class="create-account">
+          <a href="register.php">Create account</a>
+        </p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
