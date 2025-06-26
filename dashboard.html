@@ -31,74 +31,62 @@
             </div>
         </nav>
 
-       <div class="profile-container">
-        <!-- Left: Profile Image + Name -->
-        <div class="profile-left">
-            <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-avatar" />
-            <h3 id="displayName">John Doe</h3>
+        <!--user profile-->
+        <div class="userbar-container">
+            <div class="userbar-left">
+            <img src="https://via.placeholder.com/50" alt="Avatar" class="userbar-avatar" />
+            <span class="userbar-greeting">Welcome back, Username</span>
+            </div>
+            <a href="profile.html" class="userbar-edit-button">Edit Profile</a>
         </div>
+            
+        <!-- Main Dashboard Section -->
+        <div class="dashboard">
+            <div class="hero-section">
+                <img src="img/banner.jpg" alt="Cute cats for adoption" class="hero-image" />
+                <h1 class="hero-text">Welcome to FurEver Home</h1>
+                </div>
 
-        <!-- Right: Welcome + Details -->
-        <div class="profile-right">
-            <p class="welcome-text">Welcome back!</p>
-
-            <div id="profileView">
-            <p><strong>Name:</strong> <span id="viewName">John Doe</span></p>
-            <p><strong>Address:</strong> <span id="viewAddress">123 Cat Street, KL</span></p>
-            <p><strong>Contact:</strong> <span id="viewContact">012-3456789</span></p>
-            <button class="edit-btn" onclick="toggleEdit(true)">Edit Profile</button>
+                <!-- Floating Card Section -->
+            <div class="adopt-box">
+                <h2>Adopt</h2>
+                <p>Give a loving animal a second chance at life. Your new best friend is waiting!</p>
+                <a href="cats_list_user.html" class="adopt-btn">View Animals for Adoption</a>
             </div>
 
-            <div id="profileEdit" style="display: none;">
-            <form onsubmit="submitProfile(event)">
-                <input type="text" id="editName" value="John Doe" />
-                <input type="text" id="editAddress" value="123 Cat Street, KL" />
-                <input type="tel" id="editContact" value="012-3456789" />
-                <div class="button-group">
-                <button type="submit" class="save-btn">Save</button>
-                <button type="button" class="cancel-btn" onclick="toggleEdit(false)">Cancel</button>
-                </div>
+            <!-- Adoption History Card -->
+            <div class="card card-history">
+            <div class="card-header">
+                <h2>Adoption History</h2>
+            </div>
+            <div class="history-item">
+            <div class="history-info">
+                <p>Adopted: Luna - 12 March 2025</p>
+                <button class="toggle-feedback">Give Feedback</button>
+            </div>
+
+            <form class="feedback-form">
+                <label for="feedback-luna">Feedback:</label>
+                <textarea id="feedback-luna" rows="3" placeholder="Share your experience..."></textarea>
+                <button type="submit">Submit</button>
             </form>
             </div>
-        </div>
-        </div>
-
-        <div class="user-dashboard">
-            <div class="profile-tabs">
-      
-                <button class="tab-button" onclick="showTab('history')">Adoption History</button>
-                <button class="tab-button" onclick="showTab('requests')">Modify Requests</button>
-                <button class="tab-button" onclick="showTab('feedback')">Feedback</button>
-                <button class="tab-button" onclick="showTab('favorites')">Favorites</button>
+            <div class="history-item">
+            <div class="history-info">
+                <p>Adopted: Luna - 12 March 2025</p>
+                <button class="toggle-feedback">Give Feedback</button>
             </div>
 
-            <div class="tab-content" id="history">
-                <ul>
-                <li>✅ Adopted Luna – Jan 2024</li>
-                <li>🕒 Pending: Tiger – Sent May 2025</li>
-                </ul>
-            </div>
-
-            <div class="tab-content" id="requests">
-                <ul>
-                <li>Tiger – <button>Cancel</button> <button>Modify</button></li>
-                </ul>
-            </div>
-
-            <div class="tab-content" id="feedback">
-                <form class="feedback-form">
-                <textarea placeholder="Write your feedback after adoption..."></textarea>
-                <button type="submit">Submit Feedback</button>
-                </form>
-            </div>
-
-            <div class="tab-content" id="favorites">
-                <ul>
-                <li>🐾 Bella <button>Remove</button></li>
-                <li>🐾 Max <button>Remove</button></li>
-                </ul>
+            <form class="feedback-form">
+                <label for="feedback-luna">Feedback:</label>
+                <textarea id="feedback-luna" rows="3" placeholder="Share your experience..."></textarea>
+                <button type="submit">Submit</button>
+            </form>
+            </div>      
             </div>
         </div>
+
+       
 <script src="profile.js"></script>
 </body>
 

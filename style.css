@@ -580,147 +580,240 @@ details p {
 }
 
 
-/*user profile*/
-.profile-container {
+/*user dashboard profile*/
+.userbar-container {
+  margin-top: 5px;
   display: flex;
-  gap: 30px;
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #fdfdfd;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  align-items: flex-start;
-  font-family: sans-serif;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: white;
+  width: auto;
+  border-bottom: 1px solid #ccc;
 }
 
-/* Left section: Avatar + name */
-.profile-left {
-  text-align: center;
-  flex: 0 0 150px;
+.userbar-left {
+  display: flex;
+  align-items: center;
 }
 
-.profile-avatar {
-  width: 150px;
-  height: 150px;         /* Equal height = square */
-  border-radius: 10px;  
+.userbar-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 10px;
-  border: solid #0056b3;
+  margin-right: 1rem;
 }
 
-/* Right section: Welcome and form */
-.profile-right {
-  flex: 1;
+.userbar-greeting {
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
-.welcome-text {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-input {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-/* Button Styles */
-.edit-btn,
-.save-btn,
-.cancel-btn {
-  padding: 8px 18px;
-  border-radius: 6px;
+.userbar-edit-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
   border: none;
-  cursor: pointer;
-  font-size: 14px;
-  margin-right: 10px;
-}
-
-.edit-btn, .save-btn {
-  background-color: #4CAF50;
+  border-radius: 4px;
+  background-color: #007bff;
   color: white;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.cancel-btn {
-  background-color: #ccc;
-  color: #333;
+.userbar-edit-button:hover {
+  background-color: #0056b3;
 }
 
-/*dash*/
+/* === Dashboard Cards Section === */
 
-.user-dashboard {
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 20px;
-  background: #fdfdfd;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  font-family: Arial, sans-serif;
-}
-
-/* Tabs */
-.profile-tabs {
+.dashboard {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
-.tab-button {
-  flex: 1;
-  padding: 10px 14px;
-  background: #eee;
+/* Shared card style */
+.card {
+  flex: 1 1 45%;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+
+
+/* History items */
+.history-item {
+  border-top: 1px solid #eee;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Info section with paragraph + button */
+.history-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Feedback button */
+.toggle-feedback {
+  background-color: #ffc107;
+  color: #000;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
   cursor: pointer;
-  transition: 0.2s;
+  font-size: 0.9rem;
 }
 
-.tab-button:hover {
-  background: #ddd;
+.toggle-feedback:hover {
+  background-color: #e0a800;
 }
 
-.tab-button.active-tab {
-  background: #4CAF50;
-  color: white;
-}
-
-/* Tab Content */
-.tab-content {
+/* Feedback Form Style */
+.feedback-form {
   display: none;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-left: 3px solid #28a745;
+  border-radius: 4px;
+  animation: fadeIn 0.3s ease;
 }
 
-.tab-content ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.tab-content li {
-  padding: 8px 0;
-  border-bottom: 1px solid #ccc;
+.feedback-form label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
 }
 
 .feedback-form textarea {
   width: 100%;
-  min-height: 80px;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 6px;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 4px;
   border: 1px solid #ccc;
   resize: vertical;
+  margin-bottom: 0.5rem;
 }
 
-.feedback-form button {
-  background: #4CAF50;
+.feedback-form button[type="submit"] {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background-color: #28a745;
   color: white;
-  padding: 8px 14px;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
+.feedback-form button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/* Optional animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scaleY(0.95); }
+  to { opacity: 1; transform: scaleY(1); }
+}
+
+/* === Profile Page Styles === */
+
+.profile-page {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.profile-page h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Avatar Section */
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatar-section img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.avatar-section input[type="file"] {
+  font-size: 0.9rem;
+}
+
+
+.profile-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+
+.profile-form input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.form-buttons button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#editBtn {
+  background-color: #007bff;
+  color: white;
+}
+
+#editBtn:hover {
+  background-color: #0056b3;
+}
+
+#saveBtn {
+  background-color: #28a745;
+  color: white;
+}
+
+#saveBtn:hover {
+  background-color: #218838;
+}
+
+#saveBtn:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}

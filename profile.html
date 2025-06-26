@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+      <nav>
+        <div class="container">
+        <a href="dashboard.html" class="brand">Simple</a>
+        <ul class="nav-links">
+            <li><a href="cats_list_user.html">Cat List</a></li>
+            
+        </ul>
+        <div class="menu-toggle">☰</div>
+        </div>
+    </nav>
+
+  <div class="profile-page">
+    <h1>User Profile</h1>
+
+    <form class="profile-form">
+        <div class="avatar-section">
+            <img src="https://via.placeholder.com/100" alt="User Avatar" id="avatarPreview" />
+            <input type="file" id="avatarInput" accept="image/*" disabled />
+        </div>
+
+      <label>
+        Name:
+        <input type="text" name="name" value="John Doe" disabled />
+      </label>
+
+      <label>
+        Email:
+        <input type="email" name="email" value="john@example.com" disabled />
+      </label>
+
+      <label>
+        Phone:
+        <input type="tel" name="phone" value="+60123456789" disabled />
+      </label>
+
+      <label>
+        Address:
+        <input type="text" name="address" value="123, Pet Street, KL" disabled />
+      </label>
+
+      <div class="form-buttons">
+        <button type="button" id="editBtn">Edit</button>
+        <button type="submit" id="saveBtn" disabled>Save</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const editBtn = document.getElementById('editBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const inputs = document.querySelectorAll('.profile-form input');
+    const avatarInput = document.getElementById('avatarInput');
+
+    editBtn.addEventListener('click', () => {
+      inputs.forEach(input => input.disabled = false);
+      avatarInput.disabled = false;
+      saveBtn.disabled = false;
+    });
+
+    // Avatar preview
+    avatarInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          document.getElementById('avatarPreview').src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-left">
+        <p>&copy; 2025 FurEver Home. All rights reserved.</p>
+        </div>
+        <div class="footer-right">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact</a>
+        </div>
+    </div>
+    </footer>
+
+</body>
+</html>
