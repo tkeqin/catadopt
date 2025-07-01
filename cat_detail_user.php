@@ -11,16 +11,26 @@
     <nav>
         <div class="container">
             <a href="dashboard.php" class="brand">
-                <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
+                 <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
             </a>
             <ul class="nav-links">
-                <li><a href="cat_list_guest.php">Cat List</a></li>
-                <li><a href="login.php" class="btn-adopt">Login</a></li>
+                <li><a href="cat_list_user.php">Cat List</a></li>
+                <li><a href="logout.php">Log out</a></li>
             </ul>
             <div class="menu-toggle">☰</div>
         </div>
     </nav>
 
+      <div class="side-menu" id="side-menu">
+    <ul>
+            <li><a href="cat_list_user.php" class="btn-adopt">Cat List</a></li> 
+            <li><a href="dashboard.php" class="btn-adopt">Home</a></li> 
+            <li><a href="logout.php" class="btn-adopt">Log out</a></li> 
+
+    </ul>
+  </div>
+
+<section>
     <main>
         <div class="catdetail-container">
         <?php
@@ -76,6 +86,8 @@
         ?>
         </div>
     </main>
+    <section>
+    <script src="menu.js"></script>   
 </body>
 
 <footer class="site-footer">
@@ -86,7 +98,7 @@
     <div class="footer-right">
       <a href="#">Privacy Policy</a>
       <a href="#">Terms of Service</a>
-    
+     
     </div>
   </div>
 </footer>

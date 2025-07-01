@@ -13,12 +13,14 @@
     <body>
         <nav>
             <div class="container">
-            <a href="dashboard.html" class="brand">Simple</a>
+            <a href="dashboard.html" class="brand">
+                <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">Log out</a></li>
                 
             </ul>
-            <div class="menu-toggle">☰</div>
+            <div class="menu-toggle" id="menu-toggle">☰</div>
             </div>
 
             <!-- Bottom Centered Navigation -->
@@ -30,6 +32,16 @@
             </ul>
             </div>
         </nav>
+
+        <div class="side-menu" id="side-menu">
+        <ul>
+            <li><a href="login.php" class="btn-adopt">Login</a></li>
+            <li><a href="register.php" class="btn-adopt">Sign Up</a></li> 
+            <li><a href="cat_list_guest.php" class="btn-adopt">Cat List</a></li> 
+            <li><a href="index.html" class="btn-adopt">Home</a></li> 
+
+        </ul>
+        </div>
 
         <!--user profile-->
         <div class="userbar-container">
@@ -43,7 +55,7 @@
         <!-- Main Dashboard Section -->
         <div class="dashboard">
             <div class="hero-section">
-                <img src="img/banner.jpg" alt="Cute cats for adoption" class="hero-image" />
+                <img src="img/banner.avif" alt="Cute cats for adoption" class="hero-image" />
                 <h1 class="hero-text">Welcome to FurEver Home</h1>
                 </div>
 
@@ -51,7 +63,7 @@
             <div class="adopt-box">
                 <h2>Adopt</h2>
                 <p>Give a loving animal a second chance at life. Your new best friend is waiting!</p>
-                <a href="cats_list_user.html" class="adopt-btn">View Animals for Adoption</a>
+                <a href="cat_list_user.php" class="adopt-btn">View Animals for Adoption</a>
             </div>
 
             <!-- Adoption History Card -->
@@ -88,6 +100,7 @@
 
        
 <script src="profile.js"></script>
+<script src="menu.js"></script>
 </body>
 
 <footer class="site-footer">
@@ -98,7 +111,7 @@
     <div class="footer-right">
       <a href="#">Privacy Policy</a>
       <a href="#">Terms of Service</a>
-      <a href="#">Contact</a>
+     
     </div>
   </div>
 </footer>

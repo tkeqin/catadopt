@@ -1,50 +1,81 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['id'])) {
+    header("Location: login.html");
+    exit();
+}
+
+$conn = new mysqli("localhost", "root", "", "catadopt");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch current user data to prefill form
+$user_id = $_SESSION['id'];
+$user = [];
+$result = $conn->query("SELECT * FROM users WHERE id = $user_id");
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}
+
+// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the input values from the form
-    $fname = $_POST['customer']['fname'];
-    $lname = $_POST['customer']['lname'];
-    $email = $_POST['customer']['email'];
-    $phone = $_POST['customer']['phone'];
-    $address = $_POST['customer']['address'];
-    $dob = $_POST['customer']['dob'];
-    $occupation = $_POST['customer']['occupation'];
+    
 
-    $house_type = $_POST['customer']['house_type'];
-    $own_or_rent = $_POST['customer']['own_or_rent'];
-    $landlord_approval = $_POST['customer']['landlord_approval'];
-    $household_members = $_POST['customer']['household_members'];
-    $children_in_house = $_POST['customer']['children_in_house'];
-    $other_pets = $_POST['customer']['other_pets'];
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $dob = $_POST['dob'];
+    $occupation = $_POST['occupation'];
 
-    $adopt_reason = $_POST['customer']['adopt_reason'];
-    $adopted_before = $_POST['customer']['adopted_before'];
-    $cat_sleep = $_POST['customer']['cat_sleep'];
-    $indoor_outdoor = $_POST['customer']['indoor_outdoor'];
-    $care_away = $_POST['customer']['care_away'];
+    $house_type = $_POST['house_type'];
+    $own_or_rent = $_POST['own_or_rent'];
+    $landlord_approval = $_POST['landlord_approval'];
+    $household_members = $_POST['household_members'];
+    $children_in_house = $_POST['children_in_house'];
+    $other_pets = $_POST['other_pets'];
 
-    // Hash the password for security
-    $hashed_password = password_hash($_POST['customer']['password'], PASSWORD_DEFAULT);
+    $adopt_reason = $_POST['adopt_reason'];
+    $adopted_before = $_POST['adopted_before'];
+    $cat_sleep = $_POST['cat_sleep'];
+    $indoor_outdoor = $_POST['indoor_outdoor'];
+    $care_away = $_POST['care_away'];
 
-    $_SESSION['customer'] = $_POST['customer'];
+    $stmt = $conn->prepare("UPDATE users SET 
+        fname=?, lname=?, email=?, phone=?, address=?, date_of_birth=?, occupation=?,
+        house_type=?, own_or_rent=?, landlord_approval=?, household_members=?,
+        children_in_house=?, other_pets=?, adopt_reason=?, adopted_before=?, 
+        cat_sleep=?, indoor_outdoor=?, care_away=?
+        WHERE id=?");
 
-    // Database connection
-    $conn = new mysqli("localhost", "username", "password", "database_name");
+    $stmt->bind_param("ssssssssisssssssssi",
+        $fname, $lname, $email, $phone, $address, $dob, $occupation,
+        $house_type, $own_or_rent, $landlord_approval, $household_members,
+        $children_in_house, $other_pets, $adopt_reason, $adopted_before,
+        $cat_sleep, $indoor_outdoor, $care_away, $user_id);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    $catName = $_POST['cat_name'] ?? '';
 
-    // SQL query to insert data into the database
-    $sql = "INSERT INTO adopter_personal_info (fname, lname, email, phone, address, date_of_birth, occupation, house_type, own_or_rent, landlord_approval, household_members, children_in_house, other_pets, adopt_reason, adopted_before, cat_sleep, indoor_outdoor, care_away)
-            VALUES ('$fname', '$lname' ,'$email', '$phone', '$address', '$dob', '$occupation', '$house_type', '$own_or_rent', '$landlord_approval', '$household_members', '$children_in_house', '$other_pets', '$adopt_reason', '$adopted_before', '$cat_sleep', '$indoor_outdoor', '$care_away')";
+    if ($stmt->execute()) {
+        // Insert adoption record if catID exists
+        if (isset($_GET['cat_id'])) {
+            $catID = (int) $_GET['cat_id'];
 
-    if ($conn->query($sql) === TRUE) {
-        header("Location: living_situation.php");  // Redirect to the next page
-        exit();  // Exit to ensure further code does not run
+            
+                $stmt2 = $conn->prepare("INSERT INTO adoptions (user_id, cat_id,  adopted_at) VALUES (?, ?, NOW())");
+                $stmt2->bind_param("ii", $user_id, $catID);
+                $stmt2->execute();
+                $stmt2->close();
+            }
+        
+
+        header("Location: dashboard.php");
+        exit();
     } else {
-        echo "Error: " . $conn->error;
+        echo "Error: " . $stmt->error;
     }
 
     $conn->close();
@@ -56,163 +87,157 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Cat Adoption - Register</title>
+    <title>Adoption Form</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="dashboard.php" class="brand">Simple</a>
-            <ul class="nav-links">
-                <li><a href="cats_list_guest.php">Cat List</a></li>
-                <li><a href="login.html" class="btn-adopt">Login</a></li>
-            </ul>
-            <div class="menu-toggle">☰</div>
-        </div>
-    </nav>
-
     <main>
         <div class="adoptform-container">
             <section>
-                <h1 style="text-align: center;">Register to become an Adopter</h1>
-                <form method="post" action="register.php" id="CustomerLoginForm">
-                    <h1 style="text-align: center;">Adopter's Information</h1>
-                    
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="CustomerName">Full Name</label>
-                                <input type="text" name="customer[name]" id="CustomerName" value="" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="CustomerLastName">Last Name</label>
-                                <input type="text" name="customer[last_name]" id="CustomerLastName" value="" required>
-                            </div>
-                        </div>
+                <h1 style="text-align: center;">Adopter's Information</h1>
+                <form method="post" action="adopt_form2.php?cat_id=<?= $_GET['cat_id'] ?? '' ?>">
 
-                        <!-- Second Row: Email Address & Phone Number -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="CustomerEmail">Email Address</label>
-                                <input type="email" name="customer[email]" id="CustomerEmail" value="" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="CustomerPhone">Phone Number</label>
-                                <input type="text" name="customer[phone]" id="CustomerPhone" value="" required>
-                            </div>
-                        </div>
+                <?php if (isset($_GET['catID'])): ?>
+                    <?php
+                        $catID = (int) $_GET['catID'];
+                        $catResult = $conn->query("SELECT name FROM cat WHERE catID = $catID");
+                        $cat = $catResult && $catResult->num_rows > 0 ? $catResult->fetch_assoc() : null;
+                        $catName = $cat['name'] ?? '';
+                    ?>
+                    <input type="hidden" name="cat_name" value="<?= htmlspecialchars($catName) ?>">
+                <?php endif; ?>
 
-                    
-                        <div class="form-row">
+
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="CustomerDOB">Date of Birth</label>
-                            <input type="date" name="customer[dob]" id="CustomerDOB" required>
+                            <label for="fname">First Name</label>
+                            <input type="text" name="fname" id="fname" required value="<?= htmlspecialchars($user['fname'] ?? '') ?>">
                         </div>
-
                         <div class="form-group">
-                            <label for="CustomerOccupation">Occupation</label>
-                            <input type="text" name="customer[occupation]" id="CustomerOccupation" required>
+                            <label for="lname">Last Name</label>
+                            <input type="text" name="lname" id="lname" required value="<?= htmlspecialchars($user['lname'] ?? '') ?>">
                         </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" required value="<?= htmlspecialchars($user['email'] ?? '') ?>">
                         </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="CustomerAddress">Address</label>
-                                <input type="text" name="customer[address]" id="CustomerAddress" value="" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" name="phone" id="phone" required value="<?= htmlspecialchars($user['phone'] ?? '') ?>">
                         </div>
+                    </div>
 
-
-                    <h1 style="text-align: center;">Living Situation</h1>
-
-                    <div class="form-group">
-                        <label for="HouseType">Do you live in a house or apartment?</label>
-                        <input type="text" name="customer[house_type]" id="HouseType" value="" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" name="dob" id="dob" required value="<?= htmlspecialchars($user['date_of_birth'] ?? '') ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="occupation">Occupation</label>
+                            <input type="text" name="occupation" id="occupation" required value="<?= htmlspecialchars($user['occupation'] ?? '') ?>">
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="OwnOrRent">Do you own or rent?</label>
-                        <input type="text" name="customer[own_or_rent]" id="OwnOrRent" value="" required>
+                        <label for="address">Address</label>
+                        <input type="text" name="address" id="address" required value="<?= htmlspecialchars($user['address'] ?? '') ?>">
+                    </div>
+
+                    <h2>Living Situation</h2>
+
+                    <div class="form-group">
+                        <label for="house_type">House Type</label>
+                        <input type="text" name="house_type" id="house_type" required value="<?= htmlspecialchars($user['house_type'] ?? '') ?>">
                     </div>
 
                     <div class="form-group">
-                    <label for="LandlordApproval">If renting, do you have landlord approval for a pet?</label>
-                    <div class="radio-group-centered">
-                        <label class="radio-option">
-                        <input type="radio" name="customer[landlord_approval]" value="Yes" required> Yes
-                        </label>
-                        <label class="radio-option">
-                        <input type="radio" name="customer[landlord_approval]" value="No" required> No
-                        </label>
-                    </div>
+                        <label for="own_or_rent">Do you own or rent?</label>
+                        <input type="text" name="own_or_rent" id="own_or_rent" required value="<?= htmlspecialchars($user['own_or_rent'] ?? '') ?>">
                     </div>
 
                     <div class="form-group">
-                        <label for="HouseholdMembers">How many people live in your household?</label>
-                        <input type="text" name="customer[household_members]" id="HouseholdMembers" value="" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ChildrenInHouse">Are there children in the household?</label>
-                        <input type="text" name="customer[children_in_house]" id="ChildrenInHouse" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="OtherPets">Do you have other pets? If yes, provide details.</label>
-                        <input type="text" name="customer[other_pets]" id="OtherPets" value="" required>
-                    </div>
-
-                    <h1 style="text-align: center;">Cat Care Commitment</h1>
-
-                    <div class="form-group">
-                        <label for="AdoptReason">Why do you want to adopt a cat?</label>
-                        <input type="text" name="customer[adopt_reason]" id="AdoptReason" value="" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="AdoptedBefore">Have you adopted a pet before?</label>
+                        <label>Landlord Approval</label><br>
                         <div class="radio-group-centered">
                         <label class="radio-option">
-                        <input type="radio" name="customer[adopted_before]" value="Yes" required> Yes
+                        <input type="radio" name="landlord_approval" value="Yes" <?= ($user['landlord_approval'] ?? '') === 'Yes' ? 'checked' : '' ?>> Yes
                         </label>
                         <label class="radio-option">
-                        <input type="radio" name="customer[adopted_before]" value="No" required> No
+                        <input type="radio" name="landlord_approval" value="No" <?= ($user['landlord_approval'] ?? '') === 'No' ? 'checked' : '' ?>> No
                         </label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="CatSleep">Where will the cat sleep?</label>
-                        <input type="text" name="customer[cat_sleep]" id="CatSleep" value="" required>
+                        <label for="household_members">How many people live in your household?</label>
+                        <input type="number" name="household_members" id="household_members" required value="<?= htmlspecialchars($user['household_members'] ?? '') ?>">
                     </div>
 
                     <div class="form-group">
-                        <label for="IndoorOutdoor">Will the cat be indoors, outdoors, or both?</label>
+                        <label for="children_in_house">Are there children in the household?</label>
+                        <input type="text" name="children_in_house" id="children_in_house" required value="<?= htmlspecialchars($user['children_in_house'] ?? '') ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="other_pets">Do you have other pets?</label>
+                        <input type="text" name="other_pets" id="other_pets" required value="<?= htmlspecialchars($user['other_pets'] ?? '') ?>">
+                    </div>
+
+                    <h2>Cat Care Commitment</h2>
+
+                    <div class="form-group">
+                        <label for="adopt_reason">Why do you want to adopt a cat?</label>
+                        <input type="text" name="adopt_reason" id="adopt_reason" required value="<?= htmlspecialchars($user['adopt_reason'] ?? '') ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Have you adopted before?</label><br>
                         <div class="radio-group-centered">
-                        <label class="radio-option">
-                        <input type="radio" name="customer[indoor_outdoor]" value="Indoor" required> Indoor
-                        </label>
-                        <label class="radio-option">
-                        <input type="radio" name="customer[indoor_outdoor]" value="Outdoor" required> Outdoor
-                        </label>
-                        <label class="radio-option">
-                        <input type="radio" name="customer[indoor_outdoor]" value="Both" required> Both
-                        </label>
+                        <label class="radio-option"><input type="radio" name="adopted_before" value="Yes" <?= ($user['adopted_before'] ?? '') === 'Yes' ? 'checked' : '' ?>> Yes</label>
+                        <label class="radio-option"><input type="radio" name="adopted_before" value="No" <?= ($user['adopted_before'] ?? '') === 'No' ? 'checked' : '' ?>> No</label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="CareAway">How will you care for the cat when you're away?</label>
-                        <input type="text" name="customer[care_away]" id="CareAway" value="" required>
+                        <label for="cat_sleep">Where will the cat sleep?</label>
+                        <input type="text" name="cat_sleep" id="cat_sleep" required value="<?= htmlspecialchars($user['cat_sleep'] ?? '') ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Will the cat be indoors, outdoors, or both?</label><br>
+                        <div class="radio-group-centered">
+                        <label class="radio-option"><input type="radio" name="indoor_outdoor" value="Indoor" <?= ($user['indoor_outdoor'] ?? '') === 'Indoor' ? 'checked' : '' ?>> Indoor</label>
+                        <label class="radio-option"><input type="radio" name="indoor_outdoor" value="Outdoor" <?= ($user['indoor_outdoor'] ?? '') === 'Outdoor' ? 'checked' : '' ?>> Outdoor</label>
+                        <label class="radio-option"><input type="radio" name="indoor_outdoor" value="Both" <?= ($user['indoor_outdoor'] ?? '') === 'Both' ? 'checked' : '' ?>> Both</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="care_away">How will you care for the cat when you're away?</label>
+                        <input type="text" name="care_away" id="care_away" required value="<?= htmlspecialchars($user['care_away'] ?? '') ?>">
                     </div>
 
                     <button type="submit" class="btn">Submit</button>
                 </form>
-
-                <p class="">
-                    <a href="login.html" class="cancel">Cancel</a>
-                </p>
             </section>
         </div>
     </main>
 </body>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <p>&copy; 2025 FurEver Home. All rights reserved.</p>
+    </div>
+    <div class="footer-right">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+     
+    </div>
+  </div>
+</footer>
+
 </html>

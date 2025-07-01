@@ -1,7 +1,23 @@
+
+
 nav {
   background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  z-index: 1000;
 }
+
+section{
+  margin-top: 100px;
+}
+
+.register-form, .login-form {
+  margin-top: 0;
+}
+
 
 nav .container {
   display: flex;
@@ -27,6 +43,10 @@ nav .container {
   font-weight: bold;
   color: #251d17;
   text-decoration: none;
+}
+
+.brand img {
+  height: 50px;
 }
 
 /* Nav links, inline */
@@ -56,21 +76,111 @@ nav .container {
   color: #fff;
   border-radius: 4px;
   transition: background 0.3s;
+  
 }
 
 .nav-links .btn-adopt:hover {
   background: #d5843e;
+  color: #fff; 
+}
+
+/* Initial setup for the side menu */
+.side-menu {
+  position: fixed;
+  top: calc(var(--navbar-height, 82.5px)); /* Default value 82px, can be adjusted dynamically */
+  right: -250px; /* Hide menu offscreen initially */
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: right 0.3s ease; /* Slide effect */
+}
+
+#dashboard .side-menu, #index .side-menu {
+  top: calc(36.5px + var(--navbar-height, 82px)); /* Adjust for dashboard page if needed */
+}
+
+/* When the menu is active, slide it in */
+.side-menu.open {
+  right: 0;
+}
+
+/* Style for the menu items */
+.side-menu ul {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+}
+
+.side-menu ul li {
+  margin-bottom: 20px;
+}
+
+.side-menu ul li a {
+  text-decoration: none;
+  color: #251d17;
+  font-weight: 500;
+  font-size: 18px;
+  display: block;
+}
+
+/* Hamburger button style */
+.menu-toggle {
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
 }
 
 /* Responsive: show hamburger, hide links */
 @media (max-width: 768px) {
+  section{
+    margin-top: 130px;
+  }
   .menu-toggle {
     display: block;
   }
   .nav-links {
     display: none;
   }
+  .cat-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create 2 columns */
+    gap: 16px; /* Adjust the gap between items */
+    max-width: 100%; /* Ensure the container takes the full width */
+    padding: 16px;
+  }
+
+  .cat-card {
+    max-width: 80%; /* Ensure the card takes up the full available width */
+    margin: 0 auto; /* Center the card within the grid */
+  }
 }
+
+@media (min-width: 769px) {
+  /* Hide the side menu on larger screens */
+  .side-menu {
+    display: none;
+  }
+
+  /* Show normal navigation links on larger screens */
+  .nav-links {
+    display: flex; /* Show the normal navbar links */
+  }
+
+  /* Hide hamburger menu button on larger screens */
+  .menu-toggle {
+    display: none;
+  }
+
+    body.menu-open {
+    padding-right: 0; /* No content shift when menu is not shown */
+  }
+
+  
+
+}
+
 
 
 /* ==============================
@@ -95,9 +205,20 @@ nav .container {
 }
 
 .cat-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    transition: transform 0.3s ease;
+    text-align: center;
+    
+}
+
+
+
+.cat-card img:hover,.cat-image:hover  {
+    transform: scale(1.05);
 }
 
 .cat-card .info {
@@ -150,6 +271,50 @@ nav .container {
 
 .cat-card .actions .btn-adopt:hover {
   background: #d5843e;
+}
+/* Enhanced Cat Detail Container */
+.catdetail-container {
+  margin-top: 120px;
+  padding: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+/* Cat Image Styling */
+.cat-image {
+    max-width: 20%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    transition: transform 0.3s ease;
+}
+
+.cat-image:hover {
+  transform: scale(1.05);
+}
+
+/* Headings and Text */
+.catdetail-container h2 {
+  font-size: 2rem;
+  color: #251d17;
+  margin-bottom: 16px;
+}
+
+.catdetail-container p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.catdetail-container strong {
+  color: #ed9647;
 }
 
 
@@ -255,6 +420,7 @@ input {
 .bottom-nav {
   margin-top: 8px;
   padding-bottom: 10px;
+
 }
 
 .centered-links {
@@ -280,26 +446,33 @@ input {
 .hero-section {
   position: relative;
   width: 100%;
-  height: 400px; /* Adjust height as needed */
+  height: 50vw; /* Adjust height as needed */
   overflow: hidden;
+  /*margin-top: 2px;*/
+  z-index: 0;
 }
 
 .hero-image {
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover; /* This keeps the image full-size without stretching */
+  display: block;
+  z-index: 0;
 }
 
 .hero-text {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Patrick Hand', cursive;
   position: absolute;
-  top: 20px; /* Distance from top */
+  top: 50px; /* Distance from top */
   left: 50%;
   transform: translateX(-50%);
-  color: orange;
+  color: #ed9647;
   font-size: 48px;
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+  text-shadow: 2px 2px 4px rgba(240, 208, 179, 0.904);
   margin: 0;
+  text-align: center;
 }
 
 /* Floating Box */
@@ -308,7 +481,7 @@ input {
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   width: 80%;
   max-width: 800px;
-  margin: -80px auto 40px auto; /* Pulls box up over image */
+  margin: -100px auto 40px auto; /* Pulls box up over image */
   padding: 24px 32px;
   text-align: center;
   border-radius: 12px;
@@ -340,7 +513,7 @@ input {
 }
 
 .adopt-btn:hover {
-  background-color: #0056b3;
+  background-color: rgb(177, 124, 82);
 }
 
 /*adoption guideline*/
@@ -373,11 +546,17 @@ input {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   max-width: 280px;
   flex: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .step h3 {
   margin-top: 0;
-  color: #007bff;
+  color: rgb(223, 133, 60);
 }
 
 .step p {
@@ -388,17 +567,20 @@ input {
 /*adoption fees*/
 .adoption-fees {
   background-color: #fff;
-  padding: 60px 20px;
+  padding: 60px 30px;
   max-width: 1000px;
-  margin: 20px auto;
+  margin: 40px auto;
   text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 
 }
 
 .adoption-fees h2 {
-  font-size: 28px;
+  font-size: 32px;
+  font-weight: 600;
   margin-bottom: 24px;
-  color: #333;
+  color: #251d17;
 }
 
 .adoption-fees ul {
@@ -408,10 +590,19 @@ input {
 }
 
 .adoption-fees li {
-  font-size: 16px;
-  padding: 12px 0;
+  font-size: 18px;
+  padding: 16px 0;
   border-bottom: 1px solid #eee;
   color: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.adoption-fees li:last-child {
+  border-bottom: none;
 }
 
 /*adoption faqs*/
@@ -437,6 +628,7 @@ details {
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   position: relative;
+  transition: box-shadow 0.3s ease;
 }
 
 summary {
@@ -476,6 +668,7 @@ details p {
   margin: 8px 0 0;
   color: #555;
   font-size: 15px;
+  padding: 0; 
 }
 
 
@@ -564,8 +757,6 @@ details p {
   display: flex;
   flex-direction: column;
   align-items: flex-start;     
-  gap: 10px;
-  margin-top: 10px;
 }
 
 .radio-option {
@@ -586,7 +777,7 @@ details p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 3rem 2rem 2rem 2rem;
   background-color: white;
   width: auto;
   border-bottom: 1px solid #ccc;
@@ -615,14 +806,14 @@ details p {
   font-size: 1rem;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: rgb(236, 166, 110);
   color: white;
   cursor: pointer;
   text-decoration: none;
 }
 
 .userbar-edit-button:hover {
-  background-color: #0056b3;
+  background-color: rgb(197, 134, 82);
 }
 
 /* === Dashboard Cards Section === */
@@ -630,10 +821,10 @@ details p {
 .dashboard {
   display: flex;
   justify-content: space-between;
-  padding: 2rem;
   gap: 2rem;
   flex-wrap: wrap;
 }
+
 
 /* Shared card style */
 .card {
@@ -643,17 +834,29 @@ details p {
   border-radius: 8px;
   padding: 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
 }
 
 
 
 /* History items */
+.history-card {
+  flex: 1 1 45%;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin: 20px 60px 30px 60px;
+}
+
 .history-item {
   border-top: 1px solid #eee;
   padding: 1rem 0;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
 }
 
 /* Info section with paragraph + button */
@@ -665,7 +868,7 @@ details p {
 
 /* Feedback button */
 .toggle-feedback {
-  background-color: #ffc107;
+  background-color: #ffd24a;
   color: #000;
   border: none;
   border-radius: 4px;
@@ -678,50 +881,79 @@ details p {
   background-color: #e0a800;
 }
 
-/* Feedback Form Style */
 .feedback-form {
   display: none;
   flex-direction: column;
-  background-color: #f9f9f9;
-  padding: 1rem;
-  border-left: 3px solid #28a745;
-  border-radius: 4px;
-  animation: fadeIn 0.3s ease;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-left: 5px solid #ffc107;
+  transition: all 0.3s ease-in-out;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 100%;         /* Prevents form from overflowing parent */
+  box-sizing: border-box;  /* Includes padding in width calculation */
 }
 
 .feedback-form label {
-  font-weight: 500;
-  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
 }
 
 .feedback-form textarea {
   width: 100%;
-  padding: 0.6rem;
+  padding: 0.75rem 1rem;
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #ccc;
+  background-color: #f9f9f9;
   resize: vertical;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s;
+    max-width: 100%;          /* Prevents text area from stretching beyond */
+  box-sizing: border-box;   /* Prevent padding from causing overflow */
+}
+
+.feedback-form textarea:focus {
+  outline: none;
+  border-color: #ffc107;
+  background-color: #fff;
 }
 
 .feedback-form button[type="submit"] {
   align-self: flex-start;
-  padding: 0.5rem 1rem;
-  background-color: #28a745;
+  padding: 0.6rem 1.4rem;
+  background-color: #ffc107;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
+  font-size: 1rem;
   cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
 .feedback-form button[type="submit"]:hover {
-  background-color: #218838;
+  background-color: rgb(236, 166, 110);
 }
 
-/* Optional animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scaleY(0.95); }
-  to { opacity: 1; transform: scaleY(1); }
+/* Optional: style the toggle button to match */
+.toggle-feedback {
+  margin-top: 1rem;
+  padding: 0.6rem 1.4rem;
+  background-color: rgb(236, 166, 110);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-feedback:hover {
+  background-color: #deb744;
 }
 
 /* === Profile Page Styles === */
@@ -796,24 +1028,113 @@ details p {
 }
 
 #editBtn {
-  background-color: #007bff;
+  background-color: #ffc107;
   color: white;
 }
 
 #editBtn:hover {
-  background-color: #0056b3;
+  background-color: #ac8409;
 }
 
 #saveBtn {
-  background-color: #28a745;
+  background-color: #ffc107;
   color: white;
 }
 
 #saveBtn:hover {
-  background-color: #218838;
+  background-color: #987610;
 }
 
 #saveBtn:disabled {
   background-color: #aaa;
   cursor: not-allowed;
 }
+
+/* Align Edit and Cancel buttons with Feedback */
+.history-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Edit Button: orange like adopt */
+.btn-edit {
+  padding: 0.6rem 1.2rem;
+  background-color: #361bac;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit:hover {
+  background-color: #6749e1;
+}
+
+/* Cancel Button: red */
+.btn-cancel {
+  padding: 0.6rem 1.2rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #c82333;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;      /* Force horizontal layout */
+  flex-wrap: nowrap;        /* Keep in one line */
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;                 /* Space between elements */
+  margin: 20px auto;
+  padding: 10px;
+  overflow-x: auto;          /* Allow scroll on small screens */
+  box-sizing: border-box;
+}
+
+.search-form input,
+.search-form select,
+.search-form button {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  height: 42px; 
+  align-items: baseline;
+  width: 200px;
+}
+
+.search-form button.btn-search {
+  width: 140px;
+  border: none;
+  cursor: pointer;
+}
+
+.search-form button.btn-search:hover {
+  background-color: #b9b7b5;
+}
+
+.search-form a.btn-reset {
+  font-family: Arial;
+  color: #000;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 6px;
+  display: inline-block;
+  width: 80px;
+}
+

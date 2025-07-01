@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Who We Are | FurEver Home</title>
+  <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #fffaf5;
+      color: #333;
+    }
+
+    nav {
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 1.8rem;
+      color: #e58e26;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+    }
+
+    .nav-links li a:hover {
+      color: #e58e26;
+    }
+
+    main {
+      padding: 2rem 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #e58e26;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section h2 {
+      color: #d45d00;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .team {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+        gap: 1rem;
+        max-width: 1200px;
+        margin: 0 auto; /* center the whole grid */
+        justify-items: center; /* center items in each cell */
+    }
+    
+
+    .team-member {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      text-align: center;
+      width: 180px;
+    }
+
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.5rem;
+    }
+
+    /* --- Responsive Breakpoints --- */
+    @media (max-width: 992px) {
+    .team {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+    }
+    }
+
+    @media (max-width: 600px) {
+    .team {
+        grid-template-columns: 1fr; /* 1 per row on mobile */
+    }
+    }
+
+    footer {
+      background-color: #333;
+      color: #f1f1f1;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a href="javascript:history.back()" class="brand">
+                <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
+      </a>
+      <ul class="nav-links">
+        <li><a href="javascript:history.back()">Home</a></li>
+       
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Who We Are</h1>
+
+    <div class="section">
+      <h2>Our Story</h2>
+      <p>
+        FurEver Home started as a small community initiative with a big heart. 
+        Our founders — a group of cat lovers, rescuers, and volunteers — came together to make sure 
+        every feline gets a second chance at a happy life. What began in a single garage 
+        has now grown into a recognized platform connecting hundreds of stray and abandoned cats 
+        to loving families.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Our Mission</h2>
+      <p>
+        We are committed to rescuing cats in need, advocating for responsible pet ownership, 
+        and building a community where no cat is left behind. Every whisker counts.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Meet Our Team - SIMPLE</h2>
+      <div class="team">
+        <div class="team-member">
+          <img src="img/member1.jpg" alt="Team Member">
+          <h3>Yap Kar Ying</h3>
+          <p>Founder & Cat Rescuer</p>
+        </div>
+        <div class="team-member">
+          <img src="img/member2.jpeg" alt="Team Member">
+          <h3>Wong Shi Yun</h3>
+          <p>Veterinary Advisor</p>
+        </div>
+        <div class="team-member">
+          <img src="img/kq.jpg" alt="Team Member">
+          <h3>Tan Keqin</h3>
+          <p>Volunteer Coordinator</p>
+        </div>
+        <div class="team-member">
+          <img src="img/member4.png" alt="Team Member">
+          <h3>Sioh Ying Yi</h3>
+          <p>Adoption Manager</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <p>&copy; 2025 FurEver Home. All rights reserved.</p>
+      </div>
+      <div class="footer-right">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

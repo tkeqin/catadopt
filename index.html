@@ -7,29 +7,46 @@
   <link rel="stylesheet" href="style.css" />
 
   <!--Favicon-->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
 </head>
 <body>
   <nav>
     <div class="container">
-      <a href="index.html" class="brand">Simple</a>
+      <!-- Dynamic logo link -->
+      <a href="index.html" class="brand">
+        <img src="img/fureverhomeLogo.png" alt="FureverHome Logo">
+      </a>
       <ul class="nav-links">
         <li><a href="login.php" class="btn-adopt">Login</a></li>
-        
       </ul>
-      <div class="menu-toggle">☰</div>
+      <div class="menu-toggle" id="menu-toggle">☰</div>
     </div>
+
+    
 
     <!-- Bottom Centered Navigation -->
     <div class="bottom-nav">
       <ul class="centered-links">
-        <li><a href="#">What we do</a></li>
-        <li><a href="#">Who are we</a></li>
-        <li><a href="#">Contact us</a></li>
+        <li><a href="what_We_do.html">What we do</a></li>
+        <li><a href="who_we_are.html">Who are we</a></li>
+        <li><a href="contact_us.html">Contact us</a></li>
       </ul>
     </div>
   </nav>
 
+  <section id="dashboard">
+  <div class="side-menu" id="side-menu">
+  <ul>
+    <li><a href="login.php" class="btn-adopt">Login</a></li>
+    <li><a href="register.php" class="btn-adopt">Sign Up</a></li> 
+    <li><a href="cat_list_guest.php" class="btn-adopt">Cat List</a></li> 
+    <li><a href="index.html" class="btn-adopt">Home</a></li> 
+
+  </ul>
+  </div>
+  </section>
+
+<section>
   <main>
     <div class="hero-section">
       <img src="img/banner.jpg" alt="Cute cats for adoption" class="hero-image" />
@@ -37,11 +54,11 @@
     </div>
 
     <!-- Floating Card Section -->
-  <div class="adopt-box">
-    <h2>Adopt</h2>
-    <p>Give a loving animal a second chance at life. Your new best friend is waiting!</p>
-    <a href="cats_list_guest.html" class="adopt-btn">View Animals for Adoption</a>
-  </div>
+    <div class="adopt-box">
+      <h2>Adopt</h2>
+      <p>Give a loving cat a second chance at life. Your new best friend is waiting!</p>
+      <a href="cat_list_guest.php" class="adopt-btn">View Cats for Adoption</a>
+    </div>
 
     <section class="adoption-steps">
     <h2>Adoption Guideline</h2>
@@ -63,9 +80,9 @@
     <section class="adoption-fees">
       <h2>Adoption Fees</h2>
       <ul>
-        <li><strong>Cats:</strong> RM80 (includes vaccination & deworming)</li>
         <li><strong>Kittens:</strong> RM100 (includes vaccination & deworming)</li>
-        <li><strong>Dogs:</strong> RM120 (includes vaccination, microchip & license)</li>
+        <li><strong>Adult Cats:</strong> RM80 (includes vaccination & deworming)</li>
+        <li><strong>Senior Cats:</strong> RM50 (includes vaccination, microchip & license)</li>
       </ul>
     </section>
 
@@ -73,22 +90,22 @@
         <h2>Frequently Asked Questions</h2>
 
         <details>
-          <summary>What should I bring when adopting a pet?</summary>
+          <summary>What should I bring when adopting a cat?</summary>
           <p>You’ll need to bring your identification and payment. We also recommend bringing a carrier or leash.</p>
         </details>
 
       <details>
-        <summary>Are the animals vaccinated?</summary>
-        <p>Yes. All animals are vaccinated, dewormed, and medically checked before adoption.</p>
+        <summary>Are the cats vaccinated?</summary>
+        <p>Yes. All cats are vaccinated, dewormed, and medically checked before adoption.</p>
       </details>
 
       <details>
-        <summary>Can I adopt more than one animal?</summary>
+        <summary>Can I adopt more than one cat?</summary>
         <p>Yes, depending on availability and your home readiness assessment.</p>
       </details>
     </section>
   </main>
-
+</section>
   <footer class="site-footer">
   <div class="footer-container">
     <div class="footer-left">
@@ -97,11 +114,12 @@
     <div class="footer-right">
       <a href="#">Privacy Policy</a>
       <a href="#">Terms of Service</a>
-      <a href="#">Contact</a>
+      
     </div>
   </div>
 </footer>
 
+<script src="menu.js"></script>
 </body>
 </html>
 

@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$email', '$hashed_password')";
 
     if ($conn->query($sql) === TRUE) {
-        header("Location: login.html");
+        header("Location: login.php");
         exit();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
@@ -46,19 +46,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Cat Adoption - Register</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <nav>
+    <nav >
         <div class="container">
             <a href="dashboard.php" class="brand">Simple</a>
             <ul class="nav-links">
-                <li><a href="cats_list_guest.html">Cat List</a></li>
-                <li><a href="login.html" class="btn-adopt">Login</a></li>
+                <li><a href="cat_list_guest.php">Cat List</a></li>
+                <li><a href="login.php" class="btn-adopt">Login</a></li>
             </ul>
-            <div class="menu-toggle">☰</div>
+            <div class="menu-toggle" id="menu-toggle">☰</div>
         </div>
     </nav>
 
+        <div class="side-menu" id="side-menu">
+        <ul>
+            <li><a href="login.php" class="btn-adopt">Login</a></li>
+            <li><a href="register.php" class="btn-adopt">Sign Up</a></li> 
+            <li><a href="cat_list_guest.php" class="btn-adopt">Cat List</a></li> 
+            <li><a href="index.html" class="btn-adopt">Home</a></li> 
+
+        </ul>
+        </div>
+    <section >
     <main>
         <div class="account-container">
             <section class="register-form">
@@ -79,5 +90,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </section>
         </div>
     </main>
+        <script src="menu.js"></script>
+        </section>
 </body>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <p>&copy; 2025 FurEver Home. All rights reserved.</p>
+    </div>
+    <div class="footer-right">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
 </html>
