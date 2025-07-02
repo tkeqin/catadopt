@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['id'])) {
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 $user_id = $_SESSION['id'];
@@ -54,11 +54,14 @@ $result = mysqli_query($conn, $sql);
 <body>
   <nav>
     <div class="container">
-      <a href="dashboard.php" class="brand">Simple</a>
+      <a href="dashboard.php" class="brand">
+        <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
+      </a>
       <ul class="nav-links">
         <!-- removed<li><a href="cats_list.php">Cat List</a></li> -->
         <!-- removed<li><a href="login.php" class="btn-adopt">Login</a></li> -->
-         <li><a href="logout.php" >Log out</a></li>
+         <li><a href="javascript:history.back()">Back</a></li>
+         <li><a href="logout.php" onclick="return confirm('Are you sure you want to log out?')">Log out</a></li>
       </ul>
       <div class="menu-toggle" id="menu-toggle" >☰</div>
     </div>
@@ -73,9 +76,10 @@ $result = mysqli_query($conn, $sql);
     </ul>
   </div>
   <section>
-  <main>
-    <h1 style="text-align:center; margin-top:24px; color:#251d17;">Available Cats for Adoption</h1>
+  <main style="background-color: #fdf8f4;">
+    <h1 style="text-align:center; color:#251d17;">Available Cats for Adoption</h1>
     <form method="GET" class="search-form">
+      
       <input type="text" name="search" placeholder="Search by name" value="<?= htmlspecialchars($search) ?>" />
   
       <input type="text" name="breed" placeholder="Breed" value="<?= htmlspecialchars($breed) ?>" />

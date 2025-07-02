@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['id'])) {
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -92,6 +92,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <nav>
+        <div class="container">
+            <a href="dashboard.php" class="brand">
+                <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
+            </a>
+            <ul class="nav-links">
+                <li><a href="javascript:history.back()">Back</a></li>
+                <li><a href="logout.php" >Log out</a></li>
+            </ul>
+            <div class="menu-toggle">☰</div>
+        </div>
+    </nav>
     <main>
         <div class="adoptform-container">
             <section>

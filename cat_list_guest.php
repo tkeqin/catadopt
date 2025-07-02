@@ -45,6 +45,7 @@ $result = mysqli_query($conn, $sql);
       </a>
       <ul class="nav-links">
         <!-- <li><a href="cats_list_guest.php">Cat List</a></li> -->
+         <li><a href="javascript:history.back()">Back</a></li>
         <li><a href="login.php" class="btn-adopt">Login</a></li>
       </ul>
       <div class="menu-toggle" id="menu-toggle">☰</div>

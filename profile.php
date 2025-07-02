@@ -67,7 +67,8 @@ $conn->close();
       <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
     </a>
     <ul class="nav-links">
-      <li><a href="cat_list_user.php">Cat List</a></li>
+      <li><a href="javascript:history.back()">Back</a></li>
+      <li><a href="logout.php" onclick="return confirm('Are you sure you want to log out?')" >Log out</a></li>
     </ul>
     <div class="menu-toggle" id="menu-toggle">☰</div>
   </div>

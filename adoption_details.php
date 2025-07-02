@@ -41,6 +41,7 @@ if (isset($_GET['request_id'])) {
   <title>Adoption Details | FurEver</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="admin_style.css" />
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -167,7 +168,7 @@ if (isset($_GET['request_id'])) {
     </div>
   </div>
 
-  <a href="admin_adoption_requests.php" class="back-link">← Back to Adoption Requests</a>
+  <a href="admin_adoption_requests.php" class="btn back-btn">Back to Adoption Requests</a>
 
 </body>
 </html>

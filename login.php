@@ -93,8 +93,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                  <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
             </a>
             <ul class="nav-links">
-                <li><a href="cat_list_guest.php">Cat List</a></li>
-                <li><a href="login.php" class="btn-adopt">Login</a></li>
+                <li><a href="javascript:history.back()">Back</a></li>
+                
             </ul>
             <div class="menu-toggle" id="menu-toggle">☰</div>
         </div>

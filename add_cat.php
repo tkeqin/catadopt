@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Handle image upload
     $image_path = "";
     if (isset($_FILES['cat_image']) && $_FILES['cat_image']['error'] == 0) {
-        $target_dir = "images/";
+        $target_dir = "img/";
         $image_name = basename($_FILES["cat_image"]["name"]);
         $target_file = $target_dir . time() . "_" . $image_name;
 
@@ -56,24 +56,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Add Cat</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin_style.css">
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <body>
-<nav>
-  <div class="container">
-    <a href="admin_dashboard.php" class="brand">FurEver Admin</a>
-    <ul class="nav-links">
-      <li><a href="dashboard.php">Dashboard</a></li>
-      <li><a href="cats_list_usr.html">Cat List</a></li>
-    </ul>
-    <div class="menu-toggle">☰</div>
-  </div>
-</nav>
 
 <main>
-  <div class="account-container">
-    <section class="register-form">
+  <div class="form-container">
       <h1 style="text-align:center;">Add a New Cat</h1>
 
       <?php if ($success): ?>
@@ -95,9 +84,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <label>Upload Image (optional)</label>
         <input type="file" name="cat_image" accept="image/*">
 
+        <div class="button-group">
         <button type="submit" class="btn">Add Cat</button>
+        <a href="admin_view_cats.php" class="btn back-btn">Back to Cat List</a>
+        </div>
       </form>
-    </section>
   </div>
 </main>
 </body>

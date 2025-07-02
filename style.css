@@ -1,4 +1,6 @@
-
+body{
+  font-family: 'Segoe UI', sans-serif;
+}
 
 nav {
   background: #fff;
@@ -24,7 +26,7 @@ nav .container {
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0px auto;
   padding: 12px 24px;
 }
 
@@ -248,16 +250,18 @@ nav .container {
 .cat-card .actions a {
   flex: 1;
   text-align: center;
-  padding: 8px 0;
+  padding: 8px 0px;
   border-radius: 4px;
   text-decoration: none;
   font-weight: 500;
   transition: background 0.3s;
+  font-size: 14px;
 }
 
 .cat-card .actions .btn-detail {
   background: #f5f5f5;
   color: #251d17;
+  
 }
 
 .cat-card .actions .btn-detail:hover {
@@ -326,7 +330,7 @@ body.account-login {
 }
 .account-container {
   max-width: 380px;
-  margin: 60px auto;
+  margin: 150px auto 90px;
   background: #fff;
   padding: 32px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -339,6 +343,7 @@ body.account-login {
   margin: 0 0 8px;
   font-weight: 400;
   font-style: bold;
+
 }
 .reset-password p {
   margin: 0 0 24px;
@@ -397,13 +402,17 @@ input {
   margin-bottom: 10px;
 }
 
+.cancel,.create-account {
+  text-align: center;
+}
+
 .forgot-password a,
 .create-account a, 
 .cancel a {
   color: #251d17;
   text-decoration: none;
   font-weight: 500;
-
+  
 }
 .forgot-password a:hover,
 .create-account a:hover,
@@ -444,12 +453,14 @@ input {
 }
 
 .hero-section {
+  background-color: #fdf8f4;
   position: relative;
   width: 100%;
   height: 50vw; /* Adjust height as needed */
   overflow: hidden;
   /*margin-top: 2px;*/
   z-index: 0;
+  
 }
 
 .hero-image {
@@ -462,7 +473,7 @@ input {
 }
 
 .hero-text {
-    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Patrick Hand', cursive;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Patrick Hand', cursive;
   position: absolute;
   top: 50px; /* Distance from top */
   left: 50%;
@@ -476,6 +487,9 @@ input {
 }
 
 /* Floating Box */
+.wrap-adopt {
+  background-color: #fdf8f4;
+}
 .adopt-box {
   background-color: #ffffff;
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
@@ -487,6 +501,7 @@ input {
   border-radius: 12px;
   position: relative;
   z-index: 1;
+  
 }
 
 .adopt-box h2 {
@@ -518,7 +533,7 @@ input {
 
 /*adoption guideline*/
 .adoption-steps {
-  background-color: #f9f9f9;
+  background-color: #fdf8f4;
   padding: 60px 20px;
   text-align: center;
 }
@@ -607,7 +622,7 @@ input {
 
 /*adoption faqs*/
 .adoption-faqs {
-  background-color: #f9f9f9;
+  background-color: #fdf8f4;
   padding: 60px 20px;
   max-width: 800px;
   margin: auto;
@@ -678,7 +693,7 @@ details p {
   background-color: rgb(236, 166, 110);
   color: #f0f0f0;
   padding: 30px 20px;
-  font-size: 14px;
+  font-size: 14px bold;
 }
 
 .footer-container {
@@ -714,9 +729,9 @@ details p {
 
 .adoptform-container {
     max-width: 1000px; 
-    margin: 60px auto;
+    margin: 120px auto;
     background: #fff;
-    padding: 40px;  
+    padding: 4px 40px 40px;  
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     border-radius: 8px;
     align-items: flex-start;
@@ -773,12 +788,13 @@ details p {
 
 /*user dashboard profile*/
 .userbar-container {
+  background-color: #fdf8f4;
   margin-top: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 3rem 2rem 2rem 2rem;
-  background-color: white;
+  
   width: auto;
   border-bottom: 1px solid #ccc;
 }
@@ -819,6 +835,7 @@ details p {
 /* === Dashboard Cards Section === */
 
 .dashboard {
+  background-color: #fdf8f4;
   display: flex;
   justify-content: space-between;
   gap: 2rem;
@@ -891,8 +908,7 @@ details p {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   border-left: 5px solid #ffc107;
   transition: all 0.3s ease-in-out;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    max-width: 100%;         /* Prevents form from overflowing parent */
+  max-width: 100%;         /* Prevents form from overflowing parent */
   box-sizing: border-box;  /* Includes padding in width calculation */
 }
 
@@ -1058,7 +1074,7 @@ details p {
 
 /* Edit Button: orange like adopt */
 .btn-edit {
-  padding: 0.6rem 1.2rem;
+  padding: 0.5rem 1.2rem;
   background-color: #361bac;
   color: white;
   border: none;
@@ -1075,7 +1091,7 @@ details p {
 
 /* Cancel Button: red */
 .btn-cancel {
-  padding: 0.6rem 1.2rem;
+  padding: 0.5rem 1.2rem;
   background-color: #dc3545;
   color: white;
   border: none;
@@ -1138,3 +1154,24 @@ details p {
   width: 80px;
 }
 
+@media (max-width: 600px) {
+  .search-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-form input,
+  .search-form select,
+  .search-form .button-group {
+    width: 100%;
+    max-width: none;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn-search, .btn-reset {
+    width: 100%;
+  }
+}

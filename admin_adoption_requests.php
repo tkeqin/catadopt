@@ -40,15 +40,8 @@ $result = $conn->query($sql);
     th {
         background-color: #f2f2f2;
     }
-    .btn-action {
-        padding: 6px 12px;
-        margin: 2px;
-        border: none;
-        border-radius: 4px;
-        color: white;
-        cursor: pointer;
-    }
-    .approve { background-color:rgb(91, 216, 121); }
+    
+    .approve { background-color:rgb(84, 188, 109); }
     .reject { background-color: #dc3545; }
   </style>
 </head>
@@ -77,16 +70,16 @@ $result = $conn->query($sql);
                     <td><?= htmlspecialchars($row['fname']) ?></td>
                     <td><?= htmlspecialchars($row['email']) ?></td>
                     <td><?= date('d M Y', strtotime($row['adopted_at'])) ?></td>
-                    <td><a href="adoption_details.php?request_id=<?= $row['id'] ?>">Click to view</a></td>
+                    <td><a button class="btn" href="adoption_details.php?request_id=<?= $row['id'] ?>">Click to view</a></td>
 
                     <td>
                         <form method="POST" action="process_adoption_request.php" style="display:inline;">
                             <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                            <button class="btn-action approve" name="action" value="approve">Approve</button>
+                            <button class="btn approve" name="action" value="approve">Approve</button>
                         </form>
                         <form method="POST" action="process_adoption_request.php" style="display:inline;">
                             <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                            <button class="btn-action reject" name="action" value="reject">Reject</button>
+                            <button class="btn reject" name="action" value="reject">Reject</button>
                         </form>
                     </td>
                 </tr>

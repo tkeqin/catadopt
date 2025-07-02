@@ -37,17 +37,7 @@ $result = $conn->query("SELECT * FROM cat");
         .cat-table th {
             background-color: #f2f2f2;
         }
-        .actions a {
-            margin: 0 5px;
-            padding: 6px 12px;
-            background: #007BFF;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        .actions a:hover {
-            background: #0056b3;
-        }
+        
         h1 {
             text-align: center;
             margin-top: 2rem;
@@ -86,7 +76,8 @@ $result = $conn->query("SELECT * FROM cat");
                     <td class="actions">
             <!--<a href="admin_view_cat_detail.php?catID=<?= $cat['catID'] ?>">View</a>-->
                         <a href="admin_update_cats.php?catID=<?= $cat['catID'] ?>">Edit</a>
-                        <a href="admin_remove_cat.php?catID=<?= $cat['catID'] ?>">Remove</a>
+                        <a href="admin_remove_cat.php?catID=<?= $cat['catID'] ?>" onclick="return confirm('Are you sure you want to delete this cat? This action cannot be undone.');">Remove</a>
+
                     </td>
                 </tr>
             <?php endwhile; ?>
@@ -96,7 +87,7 @@ $result = $conn->query("SELECT * FROM cat");
     </tbody>
 </table>
 <div class="button-group">
-    <a href="add_cat.php" class="btn">Add Cat</a>
+    <a href="add_cat.php" class="btn btn-add-cat">Add Cat</a>
     <a href="admin_dashboard.php" class="btn back-btn">Back to Admin Dashboard</a>
 </div>
 

@@ -44,7 +44,7 @@ $history_result = $conn->query("
                 <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
             </a>
             <ul class="nav-links">
-                <li><a href="logout.php">Log out</a></li>
+                <li><a href="logout.php" onclick="return confirm('Are you sure you want to log out?')">Log out</a></li>
                 
             </ul>
             <div class="menu-toggle" id="menu-toggle">☰</div>
@@ -65,7 +65,7 @@ $history_result = $conn->query("
         <ul>
             <li><a href="cat_list_user.php" class="btn-adopt">Cat List</a></li> 
             <li><a href="dashboard.php" class="btn-adopt">Home</a></li> 
-            <li><a href="logout.php" class="btn-adopt">Log out</a></li> 
+            <li><a href="logout.php" class="btn-adopt" onclick="return confirm('Are you sure you want to log out?')">Log out</a></li> 
         
         </ul>
         </div>
