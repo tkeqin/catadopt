@@ -18,7 +18,7 @@ $result = $conn->query("SELECT * FROM users WHERE role != 'admin'");
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Admin - Manage Users</title>
+    <title>Admin Manage Users | FurEver</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <style>

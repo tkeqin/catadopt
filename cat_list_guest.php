@@ -33,7 +33,7 @@ $result = mysqli_query($conn, $sql);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cat List</title>
+  <title>Cat List | FurEver</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
@@ -45,25 +45,25 @@ $result = mysqli_query($conn, $sql);
       </a>
       <ul class="nav-links">
         <!-- <li><a href="cats_list_guest.php">Cat List</a></li> -->
-         <li><a href="javascript:history.back()">Back</a></li>
+         <li><a href="index.html">Back</a></li>
         <li><a href="login.php" class="btn-adopt">Login</a></li>
       </ul>
       <div class="menu-toggle" id="menu-toggle">☰</div>
     </div>
   </nav>
 
-    <div class="side-menu" id="side-menu">
-  <ul>
-    <li><a href="login.php" class="btn-adopt">Login</a></li>
-    <li><a href="register.php" class="btn-adopt">Sign Up</a></li> 
-    <li><a href="cat_list_guest.php" class="btn-adopt">Cat List</a></li> 
-    <li><a href="index.html" class="btn-adopt">Home</a></li> 
+  <div class="side-menu" id="side-menu">
+    <ul>
+      <li><a href="login.php" class="btn-adopt">Login</a></li>
+      <li><a href="register.php" class="btn-adopt">Sign Up</a></li> 
+      <li><a href="cat_list_guest.php" class="btn-adopt">Cat List</a></li> 
+      <li><a href="index.html" class="btn-adopt">Home</a></li> 
 
-  </ul>
+    </ul>
   </div>
-<section>
-  <main>
-    <h1 style="text-align:center; margin-top:24px; color:#251d17;">Available Cats for Adoption</h1>
+<section style="background-color: #fdf8f4;">
+  <main style="padding-top:30px; padding-bottom:30px">
+    <h1 style="text-align:center; color:#251d17;">Available Cats for Adoption</h1>
     <form method="GET" class="search-form">
       <input type="text" name="search" placeholder="Search by name" value="<?= htmlspecialchars($search) ?>" />
   

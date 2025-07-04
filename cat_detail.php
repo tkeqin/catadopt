@@ -3,25 +3,34 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Cat Adoption - Register</title>
+    <title>Cat Detail | FurEver</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <nav>
         <div class="container">
-            <a href="dashboard.php" class="brand">
+            <a href="index.html" class="brand">
                 <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
             </a>
             <ul class="nav-links">
                 <li><a href="javascript:history.back()">Back</a></li>
 
             </ul>
-            <div class="menu-toggle">☰</div>
+            <div class="menu-toggle" id="menu-toggle">☰</div>
         </div>
     </nav>
+    <div class="side-menu" id="side-menu">
+            <ul>
+                <li><a href="login.php" class="btn-adopt">Login</a></li>
+                <li><a href="register.php" class="btn-adopt">Sign Up</a></li> 
+                <li><a href="cat_list_guest.php" class="btn-adopt">Cat List</a></li> 
+                <li><a href="index.html" class="btn-adopt">Home</a></li> 
 
-    <main>
+            </ul>
+        </div>
+
+    <main >
         <div class="catdetail-container">
         <?php
             // Connect to database
@@ -76,6 +85,7 @@
         ?>
         </div>
     </main>
+    <script src="menu.js"></script>
 </body>
 
 <footer class="site-footer">

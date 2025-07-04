@@ -107,22 +107,33 @@ $history_result = $conn->query("
                     <?php while($adoption = $history_result->fetch_assoc()): ?>
                         <div class="history-item">
                             <div class="history-info">
-                                 <!--
-                            <p>Adopted: <?= htmlspecialchars($adoption['cat_name']) ?> - <?= date('d M Y', strtotime($adoption['adopted_at'])) ?></p> 
-                            -->  
-                            <p>
-                            Cat: <?= htmlspecialchars($adoption['cat_name']) ?> - 
-                            <?= isset($adoption['status']) && $adoption['status'] === 'approved' ? 'Adopted' : 'Pending' ?> 
-                            on <?= date('d M Y', strtotime($adoption['adopted_at'])) ?>
-                            </p>
+                                <p>
+                                    Cat: <?= htmlspecialchars($adoption['cat_name']) ?> - 
+                                    <?php
+                                    if (isset($adoption['status'])) {
+                                        $status = strtolower($adoption['status']);
+                                        if ($status === 'approved') {
+                                            echo 'Adopted';
+                                        } elseif ($status === 'rejected') {
+                                            echo 'Rejected';
+                                        } else {
+                                            echo 'Pending';
+                                        }
+                                    }
+                                ?>
 
-                            <div class="history-actions-vertical">
-                                <?php if ($adoption['status'] === 'Pending'): ?>
-                                    <a href="edit_adoption.php?id=<?= $adoption['id'] ?>" class="btn-edit">Edit</a>
-                                    <a href="cancle_request.php?id=<?= $adoption['id'] ?>" class="btn-cancel" onclick="return confirm('Are you sure you want to cancel this request?')">Cancel</a>
-                                <?php endif; ?>
+                                    on <?= date('d M Y', strtotime($adoption['adopted_at'])) ?>
+                                </p>
+
+                                <div class="history-actions-vertical">
+                                    <?php if ($adoption['status'] === 'Pending'): ?>
+                                        <a href="edit_adoption.php?id=<?= $adoption['id'] ?>" class="btn-edit">Edit</a>
+                                        <a href="cancel_request.php?id=<?= $adoption['id'] ?>" class="btn-cancel" onclick="return confirm('Are you sure you want to cancel this request?')">Cancel</a>
+                                    <?php elseif ($adoption['status'] === 'rejected'): ?>
+                                    <?php endif; ?>
+
                                     <button class="toggle-feedback">Give Feedback</button>
-                            </div>
+                                </div>
                             </div>
                             <form class="feedback-form" method="post" action="submit_feedback.php">
                                 <input type="hidden" name="adoption_id" value="<?= $adoption['id'] ?>">
@@ -131,10 +142,11 @@ $history_result = $conn->query("
                                 <button type="submit">Submit</button>
                             </form>
                         </div>
-                    <?php endwhile; ?>
-                <?php else: ?>
-                    <p style="padding: 1rem;">You have not adopted any cats yet.</p>
-                <?php endif; ?>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p style="padding: 1rem;">You have not adopted any cats yet.</p>
+            <?php endif; ?>
+
             </div>
 
             

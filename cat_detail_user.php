@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Cat Adoption - Register</title>
+    <title>Cat Detail | FurEver</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
@@ -17,13 +17,13 @@
                 <li><a href="cat_list_user.php">Back</a></li>
                 <li><a href="logout.php" onclick="return confirm('Are you sure you want to log out?')">Log out</a></li>
             </ul>
-            <div class="menu-toggle">☰</div>
+            <div class="menu-toggle" id="menu-toggle">☰</div>
         </div>
     </nav>
 
-      <div class="side-menu" id="side-menu">
+    <div class="side-menu" id="side-menu">
     <ul>
-            <li><a href="cat_list_user.php" class="btn-adopt">Cat List</a></li> 
+      <li><a href="cat_list_user.php" class="btn-adopt">Cat List</a></li> 
             <li><a href="dashboard.php" class="btn-adopt">Home</a></li> 
             <li><a href="logout.php" class="btn-adopt">Log out</a></li> 
 

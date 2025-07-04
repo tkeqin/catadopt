@@ -45,8 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows === 1) {
             $row = $result->fetch_assoc();
 
-            // Validate password
             if (password_verify($password, $row['password'])) {
+                if ($row['status'] === 'suspended') {
+                    header("Location: login.php?error=Your account has been suspended. Please contact support.");
+                    exit();
+                }
+
+            // Validate password
+            //if (password_verify($password, $row['password'])) {
                 // Assign session variables
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['email'] = $row['email'];

@@ -13,14 +13,14 @@ if ($conn->connect_error) {
 }
 
 // Fetch cat list
-$result = $conn->query("SELECT * FROM cat");
+$result = $conn->query("SELECT * FROM cat ORDER BY deleted ASC, catID DESC");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Admin - View Cats</title>
+    <title>Admin View Cats | FurEver</title>
     <link rel="stylesheet" href="admin_style.css" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <style>
@@ -37,12 +37,56 @@ $result = $conn->query("SELECT * FROM cat");
         .cat-table th {
             background-color: #f2f2f2;
         }
-        
+  
         h1 {
-            text-align: center;
-            margin-top: 2rem;
-        }
-        
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .actions {
+    padding: 5px;
+    }
+
+    .action-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    }
+
+    .action-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    color: white;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+    }
+
+    .actions a.remove {
+    background: #dc3545;
+    }
+
+    .actions a.remove:hover {
+    background:rgb(139, 41, 51);
+    }
+
+
+    /* Force full width on small screens */
+    @media (max-width: 500px) {
+    .action-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .action-btn {
+        width: 100%;
+        text-align: center;
+    }
+    }
+
     </style>
 </head>
 <body>
@@ -74,10 +118,15 @@ $result = $conn->query("SELECT * FROM cat");
                     <td><?= htmlspecialchars($cat['age']) ?> years</td>
                     <td><?= htmlspecialchars($cat['status']) ?></td>
                     <td class="actions">
-            <!--<a href="admin_view_cat_detail.php?catID=<?= $cat['catID'] ?>">View</a>-->
-                        <a href="admin_update_cats.php?catID=<?= $cat['catID'] ?>">Edit</a>
-                        <a href="admin_remove_cat.php?catID=<?= $cat['catID'] ?>" onclick="return confirm('Are you sure you want to delete this cat? This action cannot be undone.');">Remove</a>
-
+                        <div class="action-wrapper">
+                            <?php if ($cat['deleted'] == 0): ?>
+                                <a class="action-btn" href="admin_update_cats.php?catID=<?= $cat['catID'] ?>">Edit</a>
+                                <a class="action-btn remove" href="admin_remove_cat.php?catID=<?= $cat['catID'] ?>"
+                                onclick="return confirm('Are you sure you want to delete this cat? This action cannot be undone.');">Remove</a>
+                            <?php else: ?>
+                                <em style="color: gray;">Removed</em>
+                            <?php endif; ?>
+                        </div>
                     </td>
                 </tr>
             <?php endwhile; ?>

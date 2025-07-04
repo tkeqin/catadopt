@@ -13,13 +13,12 @@ nav {
 }
 
 section{
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 .register-form, .login-form {
   margin-top: 0;
 }
-
 
 nav .container {
   display: flex;
@@ -30,7 +29,7 @@ nav .container {
   padding: 12px 24px;
 }
 
-/* Hamburger toggle (hidden on desktop) */
+/* Hamburger toggle*/
 .menu-toggle {
   display: none;
   font-size: 1.5rem;
@@ -89,18 +88,18 @@ nav .container {
 /* Initial setup for the side menu */
 .side-menu {
   position: fixed;
-  top: calc(var(--navbar-height, 82.5px)); /* Default value 82px, can be adjusted dynamically */
-  right: -250px; /* Hide menu offscreen initially */
+  top: calc(var(--navbar-height, 88px)); 
+  right: -250px; 
   width: 250px;
   height: 100%;
   background-color: #fff;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  transition: right 0.3s ease; /* Slide effect */
+  transition: right 0.3s ease; 
 }
 
 #dashboard .side-menu, #index .side-menu {
-  top: calc(36.5px + var(--navbar-height, 82px)); /* Adjust for dashboard page if needed */
+  top: calc(45px + var(--navbar-height, 82px)); 
 }
 
 /* When the menu is active, slide it in */
@@ -134,60 +133,6 @@ nav .container {
   padding: 10px;
 }
 
-/* Responsive: show hamburger, hide links */
-@media (max-width: 768px) {
-  section{
-    margin-top: 130px;
-  }
-  .menu-toggle {
-    display: block;
-  }
-  .nav-links {
-    display: none;
-  }
-  .cat-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Create 2 columns */
-    gap: 16px; /* Adjust the gap between items */
-    max-width: 100%; /* Ensure the container takes the full width */
-    padding: 16px;
-  }
-
-  .cat-card {
-    max-width: 80%; /* Ensure the card takes up the full available width */
-    margin: 0 auto; /* Center the card within the grid */
-  }
-}
-
-@media (min-width: 769px) {
-  /* Hide the side menu on larger screens */
-  .side-menu {
-    display: none;
-  }
-
-  /* Show normal navigation links on larger screens */
-  .nav-links {
-    display: flex; /* Show the normal navbar links */
-  }
-
-  /* Hide hamburger menu button on larger screens */
-  .menu-toggle {
-    display: none;
-  }
-
-    body.menu-open {
-    padding-right: 0; /* No content shift when menu is not shown */
-  }
-
-  
-
-}
-
-
-
-/* ==============================
-   CAT LIST & CARDS
-   ============================== */
 .cat-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -216,8 +161,6 @@ nav .container {
     text-align: center;
     
 }
-
-
 
 .cat-card img:hover,.cat-image:hover  {
     transform: scale(1.05);
@@ -276,7 +219,7 @@ nav .container {
 .cat-card .actions .btn-adopt:hover {
   background: #d5843e;
 }
-/* Enhanced Cat Detail Container */
+
 .catdetail-container {
   margin-top: 120px;
   padding: 50px;
@@ -290,7 +233,6 @@ nav .container {
   margin-bottom: 20px;
 }
 
-/* Cat Image Styling */
 .cat-image {
     max-width: 20%;
     object-fit: cover;
@@ -304,7 +246,6 @@ nav .container {
   transform: scale(1.05);
 }
 
-/* Headings and Text */
 .catdetail-container h2 {
   font-size: 2rem;
   color: #251d17;
@@ -322,12 +263,12 @@ nav .container {
 }
 
 
-/*login*/
 body.account-login {
   background: #f9f9f9;
   font-family: 'Helvetica Neue', Arial, sans-serif;
   color: #251d17;
 }
+
 .account-container {
   max-width: 380px;
   margin: 150px auto 90px;
@@ -337,18 +278,11 @@ body.account-login {
   border-radius: 8px;
 }
 
-/* 2. Headings */
-.reset-password h2,
 .login-form h1, .register-form h1 {
   margin: 0 0 8px;
   font-weight: 400;
   font-style: bold;
 
-}
-.reset-password p {
-  margin: 0 0 24px;
-  color: #555;
-  font-size: 0.95rem;
 }
 
 /* 3. Forms */
@@ -460,7 +394,6 @@ input {
   overflow: hidden;
   /*margin-top: 2px;*/
   z-index: 0;
-  
 }
 
 .hero-image {
@@ -475,7 +408,7 @@ input {
 .hero-text {
   font-family: 'Comic Sans MS', 'Chalkboard SE', 'Patrick Hand', cursive;
   position: absolute;
-  top: 50px; /* Distance from top */
+  top: 100px; /* Distance from top */
   left: 50%;
   transform: translateX(-50%);
   color: #ed9647;
@@ -490,6 +423,7 @@ input {
 .wrap-adopt {
   background-color: #fdf8f4;
 }
+
 .adopt-box {
   background-color: #ffffff;
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
@@ -501,7 +435,6 @@ input {
   border-radius: 12px;
   position: relative;
   z-index: 1;
-  
 }
 
 .adopt-box h2 {
@@ -686,8 +619,6 @@ details p {
   padding: 0; 
 }
 
-
-
 /*footer*/
 .site-footer {
   background-color: rgb(236, 166, 110);
@@ -726,7 +657,6 @@ details p {
 }
 
 /*adoptform*/
-
 .adoptform-container {
     max-width: 1000px; 
     margin: 120px auto;
@@ -789,7 +719,7 @@ details p {
 /*user dashboard profile*/
 .userbar-container {
   background-color: #fdf8f4;
-  margin-top: 5px;
+  margin-top: 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -842,7 +772,6 @@ details p {
   flex-wrap: wrap;
 }
 
-
 /* Shared card style */
 .card {
   flex: 1 1 45%;
@@ -853,8 +782,6 @@ details p {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   margin-bottom: 20px;
 }
-
-
 
 /* History items */
 .history-card {
@@ -908,8 +835,8 @@ details p {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   border-left: 5px solid #ffc107;
   transition: all 0.3s ease-in-out;
-  max-width: 100%;         /* Prevents form from overflowing parent */
-  box-sizing: border-box;  /* Includes padding in width calculation */
+  max-width: 100%;         
+  box-sizing: border-box;  
 }
 
 .feedback-form label {
@@ -928,8 +855,8 @@ details p {
   resize: vertical;
   margin-bottom: 1rem;
   transition: border-color 0.3s;
-    max-width: 100%;          /* Prevents text area from stretching beyond */
-  box-sizing: border-box;   /* Prevent padding from causing overflow */
+  max-width: 100%;          
+  box-sizing: border-box;   
 }
 
 .feedback-form textarea:focus {
@@ -976,7 +903,7 @@ details p {
 
 .profile-page {
   max-width: 600px;
-  margin: 2rem auto;
+  margin: 10rem auto;
   padding: 2rem;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -1014,7 +941,6 @@ details p {
 .avatar-section input[type="file"] {
   font-size: 0.9rem;
 }
-
 
 .profile-form label {
   display: flex;
@@ -1108,14 +1034,14 @@ details p {
 
 .search-form {
   display: flex;
-  flex-direction: row;      /* Force horizontal layout */
-  flex-wrap: nowrap;        /* Keep in one line */
+  flex-direction: row;      
+  flex-wrap: nowrap;        
   align-items: baseline;
   justify-content: center;
-  gap: 10px;                 /* Space between elements */
+  gap: 10px;                 
   margin: 20px auto;
   padding: 10px;
-  overflow-x: auto;          /* Allow scroll on small screens */
+  overflow-x: auto;          
   box-sizing: border-box;
 }
 
@@ -1154,6 +1080,41 @@ details p {
   width: 80px;
 }
 
+
+
+.back{
+  text-decoration: none;
+  color: #251d17;
+  padding: 8px 12px;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.back a{
+  text-decoration: none;
+  color: #251d17;
+  padding: 8px 12px;
+  font-weight: 500;
+  transition: color 0.3s;
+
+}
+
+.back:hover {
+  color: #d67d28;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 70vw;
+  }
+
+  .hero-text {
+    font-size: 7vw;
+  }
+}
+
 @media (max-width: 600px) {
   .search-form {
     flex-direction: column;
@@ -1173,5 +1134,114 @@ details p {
 
   .btn-search, .btn-reset {
     width: 100%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-right {
+    justify-content: center;
+  }
+
+  .footer-left {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 60vw;
+    max-height: 300px;
+  }
+
+  .hero-text {
+    font-size: 6vw;
+    white-space: normal;
+    padding: 0 10px;
+  }
+
+  .adopt-box {
+    padding: 20px;
+  }
+
+  .adopt-box h2 {
+    font-size: 1.5em;
+  }
+
+  .adopt-box p {
+    font-size: 1em;
+  }
+
+  .adopt-btn {
+    width: 90%;
+    padding: 14px 0;
+  }
+
+  section{
+    margin-top: 130px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .cat-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 16px; 
+    max-width: 100%; 
+    padding: 16px;
+  }
+
+  .cat-card {
+    max-width: 80%; 
+    margin: 0 auto; 
+  }
+}
+
+/*responsive search and filter function*/
+@media (max-width: 900px) {
+  .search-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-form input,
+  .search-form select,
+  .search-form .button-group {
+    width: 100%;
+    max-width: none;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn-search, .btn-reset {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  .side-menu {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex; 
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+    body.menu-open {
+    padding-right: 0; 
   }
 }

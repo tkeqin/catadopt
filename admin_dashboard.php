@@ -20,7 +20,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         <div class="container">
             <a href="admin_dashboard.php" class="brand">FurEver Admin</a>
             <ul class="nav-links">
-                <li><a href="logout.php">Log out</a></li>
+                <li><a href="logout.php" onclick="return confirm('Are you sure you want to log out?')">Log out</a></li>
             </ul>
         </div>
     </nav>
@@ -34,7 +34,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                 <h2>Manage Cats</h2>
                 <p>View, update details or remove cats.</p>
             </a>
-            <a href="manage_users.php" class="card">
+            <a href="admin_manage_users.php" class="card">
                 <h2>Manage Users</h2>
                 <p>View profile or suspend adopter accounts.</p>
             </a>

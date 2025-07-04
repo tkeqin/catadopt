@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 }
 
 // Delete the cat
-$stmt = $conn->prepare("DELETE FROM cat WHERE catID = ?");
+$stmt = $conn->prepare("UPDATE cat SET deleted = 1 WHERE catID = ?");
 $stmt->bind_param("i", $catID);
 
 if ($stmt->execute()) {

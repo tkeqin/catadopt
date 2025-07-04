@@ -15,7 +15,7 @@ $sql = "SELECT a.id, a.adopted_at, a.status, u.fname, u.email, c.name AS cat_nam
         FROM adoptions a
         JOIN users u ON a.user_id = u.id
         JOIN cat c ON a.cat_id = c.catID
-        WHERE a.status = 'pending'";
+        ORDER BY a.adopted_at DESC";
 $result = $conn->query($sql);
 ?>
 
@@ -23,11 +23,13 @@ $result = $conn->query($sql);
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin - Adoption Requests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Adoption Requests | FurEver</title>
   <link rel="stylesheet" href="admin_style.css" />
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
   <style>
-    table {
+
+    table.table-container {
         width: 90%;
         margin: 2rem auto;
         border-collapse: collapse;
@@ -42,14 +44,19 @@ $result = $conn->query($sql);
     }
     
     .approve { background-color:rgb(84, 188, 109); }
+    .approve:hover{ background-color:rgb(53, 111, 66); }
     .reject { background-color: #dc3545; }
+    .reject:hover { background-color:rgb(137, 45, 55); }
+
+    
   </style>
 </head>
 <body>
 
-<h1 style="text-align:center;">Pending Adoption Requests</h1>
+<h1 style="text-align:center;">Adoption Requests</h1>
 
-<table>
+
+<table class="table-container">
     <thead>
         <tr>
             <th>Request ID</th>
@@ -73,22 +80,30 @@ $result = $conn->query($sql);
                     <td><a button class="btn" href="adoption_details.php?request_id=<?= $row['id'] ?>">Click to view</a></td>
 
                     <td>
-                        <form method="POST" action="process_adoption_request.php" style="display:inline;">
-                            <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                            <button class="btn approve" name="action" value="approve">Approve</button>
-                        </form>
-                        <form method="POST" action="process_adoption_request.php" style="display:inline;">
-                            <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                            <button class="btn reject" name="action" value="reject">Reject</button>
-                        </form>
+                            <?php if (strtolower($row['status']) === 'pending'): ?>
+                                <form method="POST" action="process_adoption_request.php" style="display:inline;">
+                                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                    <button class="btn approve" name="action" value="approve">Approve</button>
+                                </form>
+                                <form method="POST" action="process_adoption_request.php" style="display:inline;">
+                                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                    <button class="btn reject" name="action" value="reject">Reject</button>
+                                </form>
+                            <?php else: ?>
+                                <span style="font-weight: bold; color: 
+                                    <?= $row['status'] === 'approved' ? 'green' : ($row['status'] === 'rejected' ? 'red' : 'gray') ?>">
+                                    <?= ucfirst($row['status']) ?>
+                                </span>
+                            <?php endif; ?>
                     </td>
                 </tr>
             <?php endwhile; ?>
         <?php else: ?>
-            <tr><td colspan="6">No pending requests.</td></tr>
+            <tr><td colspan="7">No pending requests.</td></tr>
         <?php endif; ?>
     </tbody>
 </table>
+
 
 <a href="admin_dashboard.php" class="back-btn">Back to Dashboard</a>
 

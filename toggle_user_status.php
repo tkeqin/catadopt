@@ -7,7 +7,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 }
 
 if (!isset($_GET['id']) || !isset($_GET['action'])) {
-    header("Location: manage_users.php");
+    header("Location: admin_manage_users.php");
     exit();
 }
 
@@ -25,12 +25,12 @@ $stmt->bind_param("si", $status, $id);
 if ($stmt->execute()) {
     $stmt->close();
     $conn->close();
-    header("Location: manage_users.php");
+    header("Location: admin_manage_users.php");
     exit();
 } else {
     $stmt->close();
     $conn->close();
-    header("Location: manage_users.php?error=UpdateFailed");
+    header("Location: admin_manage_users.php?error=UpdateFailed");
     exit();
 }
 ?>

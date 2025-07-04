@@ -38,10 +38,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bind_param("ssissssssssi", $name, $breed, $age, $gender, $location, $health_status, $status, $description, $healthnmedical, $image_url, $last_updated, $catID);
 
     if ($stmt->execute()) {
+    // Reject pending adoptions if marked as Adopted
+        if ($status === 'Adopted') {
+            $rejectStmt = $conn->prepare("UPDATE adoptions SET status = 'rejected' WHERE cat_id = ? AND status = 'pending'");
+            $rejectStmt ->bind_param("i", $catID);
+            $rejectStmt->execute();
+            $rejectStmt->close();
+        }
+
         $success = "Cat details updated successfully.";
     } else {
         $error = "Failed to update cat: " . $stmt->error;
-    }
+    }   
+
 
     $stmt->close();
 }

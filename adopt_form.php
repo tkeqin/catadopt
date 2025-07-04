@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Adoption Form</title>
+    <title>Adoption Form | FurEver</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="adoptform-container">
             <section>
                 <h1 style="text-align: center;">Adopter's Information</h1>
-                <form method="post" action="adopt_form2.php?cat_id=<?= $_GET['cat_id'] ?? '' ?>">
+                <form method="post" action="adopt_form.php?cat_id=<?= $_GET['cat_id'] ?? '' ?>">
 
                 <?php if (isset($_GET['catID'])): ?>
                     <?php

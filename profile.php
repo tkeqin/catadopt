@@ -10,6 +10,10 @@ if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 
 $user_id = $_SESSION['id'];
 
+// Fetch user data
+$result = $conn->query("SELECT * FROM users WHERE id = $user_id");
+$user = $result->fetch_assoc();
+
 // Handle form submission
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -45,9 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-// Fetch user data
-$result = $conn->query("SELECT * FROM users WHERE id = $user_id");
-$user = $result->fetch_assoc();
+
 $conn->close();
 ?>
 
@@ -56,7 +58,7 @@ $conn->close();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Profile</title>
+  <title>User Profile | FurEver</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
@@ -67,7 +69,7 @@ $conn->close();
       <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
     </a>
     <ul class="nav-links">
-      <li><a href="javascript:history.back()">Back</a></li>
+      <li><a href="dashboard.php">Back</a></li>
       <li><a href="logout.php" onclick="return confirm('Are you sure you want to log out?')" >Log out</a></li>
     </ul>
     <div class="menu-toggle" id="menu-toggle">☰</div>

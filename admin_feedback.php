@@ -32,7 +32,7 @@ $result = $conn->query($sql);
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Feedback | FurEver</title>
   <link rel="stylesheet" href="admin_style.css" />
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
   <style>
     .feedback-container {
       max-width: 900px;
@@ -67,7 +67,6 @@ $result = $conn->query($sql);
       text-align: center;
       margin-top: 2rem;
     }
-
     
   </style>
 </head>

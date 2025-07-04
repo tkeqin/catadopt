@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['id'])) {
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -80,13 +80,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Edit Adoption Form</title>
+    <title>Edit Adoption Form | FurEver</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <body class="account-login">
 <main>
+    <nav>
+        <div class="container">
+            <a href="dashboard.php" class="brand">
+                 <img src="img/fureverhomeLogo.png" alt="Simple Logo" >
+            </a>
+            <ul class="nav-links">
+                <li><a href="dashboard.php">Back</a></li>
+                <li><a href="logout.php" onclick="return confirm('Are you sure you want to log out?')">Log out</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">☰</div>
+        </div>
+    </nav>
+
+    <div class="side-menu" id="side-menu">
+    <ul>
+      <li><a href="cat_list_user.php" class="btn-adopt">Cat List</a></li> 
+            <li><a href="dashboard.php" class="btn-adopt">Home</a></li> 
+            <li><a href="logout.php" class="btn-adopt">Log out</a></li> 
+
+    </ul>
+  </div>
+
     <div class="adoptform-container">
-        <h1 style="text-align:center;">Edit Your Adoption Request</h1>
+        <h1 style="text-align:center;">Edit Adoption Request</h1>
         <form method="post">
             <div class="form-row">
                 <div class="form-group">
@@ -210,5 +233,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
 </footer>
+<script src="menu.js"></script>
 </body>
 </html>

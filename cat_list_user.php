@@ -47,7 +47,7 @@ $result = mysqli_query($conn, $sql);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cat List</title>
+  <title>Cat List | FurEver</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
@@ -60,7 +60,7 @@ $result = mysqli_query($conn, $sql);
       <ul class="nav-links">
         <!-- removed<li><a href="cats_list.php">Cat List</a></li> -->
         <!-- removed<li><a href="login.php" class="btn-adopt">Login</a></li> -->
-         <li><a href="javascript:history.back()">Back</a></li>
+         <li><a href="dashboard.php">Back</a></li>
          <li><a href="logout.php" onclick="return confirm('Are you sure you want to log out?')">Log out</a></li>
       </ul>
       <div class="menu-toggle" id="menu-toggle" >☰</div>
@@ -75,8 +75,8 @@ $result = mysqli_query($conn, $sql);
 
     </ul>
   </div>
-  <section>
-  <main style="background-color: #fdf8f4;">
+  <section style="background-color: #fdf8f4;">
+  <main style="padding-top:30px; padding-bottom:30px">
     <h1 style="text-align:center; color:#251d17;">Available Cats for Adoption</h1>
     <form method="GET" class="search-form">
       
@@ -114,20 +114,16 @@ $result = mysqli_query($conn, $sql);
             <a href="cat_detail_user.php?catID=<?php echo $row['catID']; ?>" class="btn-detail">View Details</a>
             <?php
               $catID = $row['catID'];
-              $statusResult = mysqli_query($conn, "SELECT status FROM adoptions WHERE user_id = $user_id AND cat_id = $catID ORDER BY adopted_at DESC LIMIT 1");
-              $statusRow = mysqli_fetch_assoc($statusResult);
+              $status = $row['status'];
 
-              if ($statusRow) {
-                $status = $statusRow['status'];
-                if ($status === 'Pending') {
-                echo '<a href="#" class="btn-adopt" style="background-color: gray; cursor: default;">Requested</a>';
-            } elseif ($status === 'approved') {
-                echo '<a href="#" class="btn-adopt" style="background-color: green; cursor: default;">Adopted</a>';
+              if ($status === 'Adopted') {
+                  echo '<a href="#" class="btn-adopt" style="background-color: green; cursor: default;">Adopted</a>';
+              } elseif ($status === 'Pending') {
+                  echo '<a href="#" class="btn-adopt" style="background-color: gray; cursor: default;">Requested</a>';
+              } else {
+                  echo '<a href="adopt_form.php?cat_id=' . $catID . '&cat_name=' . urlencode($row['name']) . '" class="btn-adopt">Adopt Now</a>';
               }
-            } else {
-                echo '<a href="adopt_form.php?cat_id=' . $catID . '&cat_name=' . urlencode($row['name']) . '" class="btn-adopt">Adopt Now</a>';
-               }
-  ?>
+              ?>
 </div>
 
         </div>
@@ -136,7 +132,7 @@ $result = mysqli_query($conn, $sql);
       ?>
     </div>
   </main>
-  <section>
+    </section>
   <script src="menu.js"></script>   
 </body>
 
